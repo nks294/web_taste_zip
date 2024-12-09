@@ -1,0 +1,654 @@
+/* ---------------------------------------------
+    반응형 미디어쿼리 스타일시트: mobile.css
+-----------------------------------------------*/
+
+/* 너비 1600px 이하부터 적용되는 스타일 */
+@media screen and (max-width: 1600px) {
+
+    /* 카드형 목록 스타일시트 */
+    .scroll-left {
+        left: 65px;
+    }
+
+    .scroll-right {
+        right: 65px;
+    }
+
+    .scroll-btn::before {
+        background: #ffffff;
+        opacity: 0.2;
+        border-radius: 15px;
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .scroll-left:disabled .line {
+        left: -2px;
+    }
+
+    .scroll-right:disabled .line {
+        right: -2px;
+    }
+
+}
+
+/* 너비 1300px 이하부터 적용되는 스타일 */
+@media screen and (max-width: 1300px) { 
+
+    /* 그리드 카드형 목록 스타일시트 */
+    #category .card-list {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, auto); 
+        gap: 10px;                            
+    }
+}
+
+/* 너비 1024px 이하부터 적용되는 스타일 */
+@media screen and (max-width: 1024px) {
+
+    html,
+    body {
+        font-size: 16px;
+        min-width: auto;
+    }
+
+    * ::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    body {
+        padding-bottom: 50px;
+    }
+
+    section {
+        margin-bottom: 80px;
+    }
+
+    .small-banner {
+        border-radius: 0;
+    }
+
+    .header-center h1 {
+        font-size: 1.5em;
+    }
+
+    .header-center h1 span::after {
+        height: 25px;
+    }
+
+    .header-center h1 span::after {
+        display: none;
+    }
+
+    .title-wrapper {
+        height: 50px;
+        margin: 0 20px;
+        max-width: none;
+    }
+
+    .mobile-nav {
+        bottom: 0;
+    }
+
+    .sidebar {
+        display: flex;
+    }
+
+    .logo {        
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .logo img {
+        width: 70px;
+    }
+
+    .header-btn-wrapper {
+        font-size: 1.4em;
+    }
+
+    .header-btn-wrapper > a {
+        display: none;
+    }
+
+    #change-mode {
+        display: inline-flex;
+        border: none !important;
+        box-shadow: none !important;
+        background: none !important;
+        margin-right: -10px;
+    }
+
+    #change-mode:hover {
+        background: none !important;
+    }
+
+    .header-center {
+        order: -1;
+    }
+
+    .mob-popular-restaurant-btn {
+        display: flex;
+    }
+
+    .popular-restaurant-wrapper {
+        font-size: 1.3em;
+        position: absolute;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 250px;
+        height: 100%;
+    }
+
+    .popular-restaurant-mob-title {
+        display: block;
+    }
+
+    .popular-restaurant-list {
+        background: none;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .popular-restaurant-title {
+        display: none;
+    }
+
+    .popular-rank {
+        font-size: 1.1em;
+    }
+    
+    #restaurant-rotation {
+        width: 100%;
+        text-align: left;
+    }
+
+    .section-content-wrapper {
+        border: none !important;
+        box-shadow: none !important;
+        position: relative;
+    }
+
+    .section-content-horizontal-wrapper {
+        flex-direction: column;
+        height: 600px;
+    }
+
+    .section-title {
+        border: none;
+        padding: 0 0 10px 10px;
+    }
+
+    /* 아래에서 위로 올라오는 창들 (로그인, 프로필 수정) */
+    #login-register,
+    #edit-profile {
+        display: block;
+        position: fixed;
+        transform: none;
+        width: 100%;
+        left: 0;
+        top: revert;
+        bottom: -100%;
+        z-index: 9999;
+        transition: bottom 0.5s ease;
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: none;
+        border: none;
+        border-top: 2px solid var(--zip-primary);
+    }
+
+    .login-register-header {
+        padding-top: 10px;
+    }
+
+    #login-register:not(.hidden),
+    #edit-profile:not(.hidden) {
+        bottom: 0;
+    }
+
+    #login-register.slide-in,
+    #edit-profile.slide-in {
+        bottom: 0;
+    }
+
+    .login-register-wrapper {
+        border: none;
+        border-radius: 0;
+    }
+    
+    .modal-close-btn {
+        top: 10px;
+        right: 10px;
+        font-size: 2em;
+        cursor: pointer;
+        border: none;
+        box-shadow: none;
+        z-index: 9999;
+        background: none;
+        color: var(--zip-primary);
+    }
+
+    /* 카드형 목록 */
+    .card-list-wrapper {
+        padding: 0 0 10px 0;
+    }
+
+    .card-list {
+        padding: 5px;
+    }
+    
+    .footer-logo {
+        display: none;
+    }
+
+    .footer-menu {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0 20px;
+    }
+    
+
+    /* 맨 위로 스크롤 버튼 스타일시트 */
+    .scroll-to-top { 
+        display: none;
+    }
+
+
+    /* 메인 배너 스타일시트 */
+    .banner-pagination-dots-wrapper {
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 10px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        align-items: flex-start;
+        background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+    }
+
+    .banner-pagination-counter-wrapper {
+        order: 1;
+    }
+
+    .banner-pagination-dots-contents {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .banner-dot {
+        width: 130px;
+        height: 70px;
+    }
+
+    .dot-title {
+        width: 130px;
+        font-size: 0.9em;
+    }
+
+    .banner-pagination-dots {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+        margin-left: 10px;
+    }
+
+    .main-banner-page-nav-btn {
+        font-size: 1.2rem;
+        padding: 0 15px;
+    }
+
+    .main-banner-prev-btn {
+        margin-right: 10px;
+    }
+
+    .main-banner-next-btn {
+        margin-right: 0;
+        margin-left: 10px;
+    }
+
+
+    /* 작은 지도 섹션 스타일시트 */
+    .region-list-container {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        position: absolute;
+        z-index: 100;
+        bottom: 0px;
+        border-radius: 10px 10px 0 0;
+        display: block;
+        top: inherit;
+    }
+
+    .region-list-wrapper {
+        overflow-x: auto !important;
+    }
+
+    .region-list {
+        width: auto;
+        display: flex; 
+        gap: 20px; 
+        padding: 15px;
+    }
+
+    .region-list li {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        border-radius: 25px;
+    }
+
+    .pagination-dots {
+        display: none;
+    }
+
+    .region-title {
+        font-size: 0.9em;
+        padding: 5px 10px;
+    }
+
+    #map-small {
+        border-radius: 0;
+    }
+
+    .map-small-restaruant-list-wrapper { 
+        display: none;
+    }
+
+    .popular-restaurant-list {
+        background: none;
+    }
+
+
+    /* 카드형 목록 스타일시트 */
+    .scroll-btn { 
+        display: none;
+    }
+
+
+    /* 그리드 카드형 목록 스타일시트 */
+    .category-tab-contents {
+        border: none;
+    }
+
+    .cate-tab-item {
+        width: auto;
+        height: auto;
+        border: none;
+        padding: 15px 30px;
+        flex-shrink: 0;
+        border-bottom: 3px solid transparent;
+    }
+
+    .category-tab-header {
+        overflow-x: auto;
+        padding: 0;
+    }
+
+    #category .card-list {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto); 
+        gap: 10px;                            
+    }
+
+    .category-tab-contents {
+        padding: 25px 5px;
+    }
+
+    .list-thumb-img {
+        height: 180px !important;
+    }
+
+
+    /* 지도 페이지 스타일시트 */
+    /* .restaurant-list-container {
+        position: fixed;
+        bottom: 52px;
+        left: 0;
+        width: 100%;
+        height: 30vh;
+        transform: translateY(0);
+        transition: transform 0.3s ease, height 0.3s ease;
+        border-radius: 20px 20px 0 0;
+        z-index: 1000;
+        border-right: none;
+    }
+
+    .restaurant-list-container.expanded {
+        height: calc(100vh - 182px);
+        border-radius: 0;
+    }
+
+    .restaurant-list-container.collapsed {
+        transform: translateY(calc(100% - 90px));
+    } */
+
+    .restaurant-container > .toggle-button {
+        display: none;
+    }
+
+    .toggle-button {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 5px;
+        background: #ddd;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .restaurant-detail-container {
+        position: fixed;
+        top: 50px;
+        right: -100%;
+        bottom: 60px;
+        width: 100%;
+        height: calc(100vh - 100px);
+        transition: right 0.3s ease;
+        z-index: 1001;
+        border-radius: 0;
+    }
+
+    .restaurant-detail-container.show {
+        right: 0;
+    }
+
+    .restaurant-container {
+        position: fixed;
+        bottom: 52px;
+        left: 0;
+        width: 100%;
+        height: 40vh; 
+        transition: all 0.3s ease-in-out;
+    }
+
+    .restaurant-container.expanded {
+        height: calc(100vh - 110px); 
+        transition: all 0.3s ease;
+    }
+
+    .restaurant-container.collapsed {
+        transform: translateY(calc(100% - 90px));
+        transition: all 0.3s ease-in-out;
+    }
+
+    .restaurant-list-container {
+        width: 100%;
+    }
+
+    .pagination-container {
+        margin-bottom: 25px;
+    }
+    
+    .mobile-toggle-handle {
+        width: 40px;
+        height: 4px;
+        background: #ddd;
+        border-radius: 2px;
+        margin: 10px auto;
+        cursor: pointer;
+    }
+
+    .mobile-toggle-wrapper {
+        width: 100%;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 게시판 모바일 스타일시트 */
+    .board-list ul li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .board-info {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+    
+    #board .board-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    #notice .board-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Myzip 화면 모바일 */
+    #myzip {
+        max-width: none;
+        width: 100%;
+        margin: 15px 0;
+        border: none;
+    }
+
+    .profile-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .profile-desc-wrapper {
+        width: 100%;
+        gap: 20px;
+    }
+
+    .profile-desc {
+        margin: 0;
+    }
+
+    .character-card img {
+        width: 80px !important;
+        height: 80px;
+    }
+
+}
+
+/* 너비 900px 이하부터 적용되는 스타일 */
+@media screen and (max-width: 900px) {
+
+    /* 그리드 카드형 목록 스타일시트 */
+    .list-thumb-img {
+        height: 200px !important;
+    }
+}
+
+/* 너비 550px 이하부터 적용되는 스타일 */
+@media screen and (max-width: 550px) {
+    
+    /* 그리드 카드형 목록 스타일시트 */
+    .list-thumb-img {
+        height: 160px !important;
+    }
+}
+
+/* 너비 480px 이하부터 적용되는 스타일 */
+@media screen and (max-width: 480px) {
+    
+    html,
+    body {
+        font-size: 14px;
+        min-width: auto;
+    }
+
+    .sidebar {
+        width: 80%;
+
+    }
+    .card-list li {
+        width: 250px !important;
+    }
+
+    #popular-container {
+        display: none;
+    }
+
+    /* 메인 배너 스타일시트 */
+    .dot-title { 
+        width: 130px;
+        font-size: 1em;
+    }
+
+    .banner-dot {
+        width: 130px;
+        height: 80px;
+    }
+
+    .banner-dot-wrapper {
+        gap: 20px;
+    }
+
+    .banner-pagination-dots {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        margin-left: 0;
+    }
+
+    .banner-pagination-dots-contents {
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        gap: 20px;
+    }
+
+    .banner-pagination-dots-wrapper {
+        background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        padding: 25px;
+    }
+
+
+    /* 그리드 카드형 목록 스타일시트 */
+    #category .card-list {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto); 
+        gap: 10px;                            
+    }
+}

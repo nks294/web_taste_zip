@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="jpa">
+	    <!-- <class>: JPA의 Entity 클래스들을 패키지와 함께 선언함
+	                  Entity클래스를 선언하지 않으면 404 에러 발생 -->
+		<class>com.taste.zip.entity.MemberEntity</class>
+		<!-- <class>com.human.jpa2.entity.BoardEntity</class>
+		<class>com.human.jpa2.entity.NoticeEntity</class>
+		<class>com.human.jpa2.entity.NoticeAttachedEntity</class> -->
+		
+		<properties>			
+			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/> -->
+			<!-- hibernate.dialect: 사용하는 DB 종류를 지정하는 속성. 수동으로 지정하지 않아도 
+			     자동으로 적용이 되기때문 -->
+			<property name="hibernate.show_sql" value="true"/><!-- Hibernate가 데이터베이스에 쿼리를 전송할 때 생성되는 SQL 문을 콘솔에 출력 -->
+			<property name="hibernate.c3p0.min_size" value="5"/><!-- C3P0 커넥션 풀에서 유지할 최소 커넥션 수를 설정 -->
+			<property name="hibernate.c3p0.max_size" value="20"/>
+			<property name="hibernate.c3p0.timeout" value="300"/><!-- C3P0 커넥션 풀에서 커넥션이 유휴 상태로 유지될 수 있는 최대 시간을 설정함(초 단위) -->
+			<property name="hibernate.c3p0.idle_test_period" value="300"/><!-- 데이터베이스 연결이 유효한지를 확인하기 위해 커넥션 풀에서 일정한 간격으로 커넥션을 테스트함(초 단위) -->
+		</properties>
+	</persistence-unit>
+</persistence>

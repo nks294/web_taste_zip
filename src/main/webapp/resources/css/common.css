@@ -1,0 +1,408 @@
+/* -----------------------------------------
+        전체 공용 스타일시트: common.css
+----------------------------------------- */
+
+html, body {
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+    font-size: 18px;
+    transition: 
+        background-color 0.5s ease, 
+        color 0.5s ease, 
+        border-color 0.5s ease, 
+        box-shadow 0.5s ease;
+}
+
+/* 기본 스타일 초기화: reset.css  -------------------------  */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+select {
+    border: none;
+}
+
+input, button, textarea {
+    border-radius: 0;
+    appearance: none;
+    border: none;
+}
+
+button:focus, input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+* ::-webkit-scrollbar { 
+    width: 14px; 
+    height: 14px; 
+}
+
+* ::-webkit-scrollbar-track { 
+    display: none; 
+}
+
+h1 { font-size: 2.3em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.8em; }
+h4 { font-size: 1.5em; }
+h5 { font-size: 1.1em; }
+h6 { font-size: 0.9em; }
+
+/* ------------------------- 기본 스타일 초기화 종료 */
+
+
+/* 색상 레퍼런스: common.css  -------------------------  */
+:root {
+    --zip-primary: #f16435;
+    --zip-primary-dark: #cb491e;
+    --zip-primary-hover: #f5815a;
+    --zip-primary-hover-dark: #35353a;
+    --zip-primary-tr: #41302b8f;
+    --zip-secondary: #e28e2d;
+    --zip-secondary-hover-light: #e9c6ba;
+    --zip-secondary-hover-dark: #424250;
+    --zip-white: #fff;
+    --zip-black: #1C1C1E;
+    --zip-blue: #3498db;
+    --zip-black-light: #35353a;
+    --zip-black-secondary: #2f2f35;
+    --zip-text-white: #ecf4f7;
+    --zip-text-black: #2E2E2E;
+    --zip-border-light: #c7c7c7;
+    --zip-border-dark: #777777;
+    --zip-white-third-tr: #ffbd8763;
+    --zip-black-third-tr: #4B556363;
+
+    --zip-success: #62C370;
+    --zip-warning: #FFA400;
+    --zip-error: #D84315;
+
+    --zip-step-active: #d0572f;
+    --zip-step-inactive: lightgray;
+
+    --zip-hashtag: #45a3e9;
+    --zip-rate: #f7a524;
+    --zip-like: #ff5656;
+
+    --sns-kakao: #FEE500;
+    --sns-naver: #03C75A;
+}
+/* ------------------------- 색상 레퍼런스 종료 */
+
+/* 라이트모드 스타일 */
+html {
+    --zip-bg: var(--zip-white);
+    --zip-text: var(--zip-text-black);
+    --zip-secondary-hover: var(--zip-secondary-hover-light);
+    --zip-border: var(--zip-border-light);
+    --zip-header: var(--zip-primary);
+    --zip-header-hover: var(--zip-primary-dark);
+    --zip-header-text: var(--zip-white);
+
+    --zip-circle1: #f07850;
+    --zip-circle2: #ffb68d;
+    --zip-circle3: #ffd6be;
+    --zip-circle4: var(--zip-white);
+
+    --zip-black-secondary: #2f2f35;
+    --zip-white-third-tr: #ffbd8763;
+    --zip-black-third-tr: #4B556363;
+}
+
+/* 다크모드 스타일 */
+html.dark-mode {
+    --zip-bg: var(--zip-black);
+    --zip-bg-secondary: var(--zip-black-secondary);
+    --zip-text: var(--zip-text-white);
+    --zip-border: var(--zip-border-dark);
+    --zip-header: var(--zip-black);
+    --zip-header-hover: var(--zip-black-light);
+    --zip-header-text: var(--zip-primary);
+    --zip-secondary-hover: var(--zip-secondary-hover-dark);
+
+    --zip-circle1: #603324;
+    --zip-circle2: #442f28;
+    --zip-circle3: #443a34;
+    --zip-circle4: var(--zip-black);
+
+    --zip-white-third-tr: var(--zip-black-third-tr);
+}
+
+html.dark-mode .map-small { filter: saturate(0.5); }
+html.dark-mode #map { filter: saturate(0.5); }
+
+/* 비활성화 상태 */
+html.dark-mode input:disabled { color: var(--zip-darkmode-primary-tr); }
+html.dark-mode button:disabled { color: var(--zip-darkmode-primary-tr); }
+
+html.dark-mode .title-wrapper,
+html.dark-mode .toggle-button { color: var(--zip-primary); }
+
+
+/* 공용 스타일 레퍼런스  -------------------------  */
+.hidden { display: none !important; }
+.com-no-select { user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+
+.com-bg { background: var(--zip-bg); }
+.com-bg-primary { background: var(--zip-primary); }
+.com-bg-primary-tr { background: var(--zip-primary-tr); }
+.com-bg-header { background: var(--zip-header); transition: background-color 0.5s ease; }
+.com-color { color: var(--zip-text); }
+.com-color-primary { color: var(--zip-primary); }
+.com-color-white { color: var(--zip-text-white); }
+.com-white-to-primary { color: var(--zip-header-text); transition: color 0.5s ease; }
+
+.com-round-5 { border-radius: 5px; }
+.com-round-10 { border-radius: 10px; }
+.com-round-15 { border-radius: 15px; }
+.com-round-20 { border-radius: 20px; }
+.com-round-30 { border-radius: 30px; }
+.com-round-point { border-radius: 999px; }
+.com-round-circle { border-radius: 50%; }
+
+.com-border-clear { border: none; }
+.com-border { border: 2px solid var(--zip-border); transition: border 0.3s ease}
+.com-border-thin { border: 1px solid var(--zip-border); transition: border 0.3s ease}
+.com-border-top-thin { border-top: 1px solid var(--zip-border); transition: border 0.3s ease}
+.com-border-bottom-thin { border-bottom: 1px solid var(--zip-border); transition: border 0.3s ease}
+.com-border-bottom-bold { border-bottom: 3px solid var(--zip-border); transition: border 0.3s ease}
+.com-border-primary { border: 2px solid var(--zip-primary); transition: border 0.3s ease}
+.com-border-primary-thin { border: 1px solid var(--zip-primary); transition: border 0.3s ease}
+.com-border-primary-bottom { border-bottom: 2px solid var(--zip-primary); transition: border 0.3s ease}
+.com-border-primary-bottom-thin { border-bottom: 1px solid var(--zip-primary); transition: border 0.3s ease}
+.com-border-primary-top { border-top: 2px solid var(--zip-primary); transition: border 0.3s ease}
+
+.com-btn-primary { background: var(--zip-primary); color: var(--zip-text-white); cursor: pointer; transition: color 0.5s ease, background-color 0.5s ease;}
+.com-btn-primary:hover { background: var(--zip-primary-hover); }
+.com-btn-primary:disabled { background: var(--zip-primary-tr); color: rgba(0, 0, 0, 0.5); }
+.com-btn-primary:disabled:hover { background: var(--zip-primary-tr); color: rgba(0, 0, 0, 0.5); }
+.com-btn-secondary { background: var(--zip-bg); color: var(--zip-text); cursor: pointer; transition: color 0.5s ease, background-color 0.5s ease;}
+.com-btn-secondary:hover { background: var(--zip-secondary-hover); }
+
+.com-block { display: block; }
+.com-pointer { cursor: pointer; }
+.com-img-fit { width: 100%; height: 100%; object-fit: cover; }
+
+.com-flex-row { display: flex; flex-direction: row;}
+.com-flex-col { display: flex; flex-direction: column;}
+.com-flex-align-center { align-items: center; }
+.com-flex-align-left { align-items: flex-start; }
+.com-flex-align-right { align-items: flex-end; }
+.com-flex-justify-center { justify-content: center; }
+.com-flex-justify-spacebetween { justify-content: space-between; }
+.com-flex-justify-spacearound { justify-content: space-around; }
+.com-flex-no-shrink { flex-shrink: 0; }
+.com-flex-no-wrap { flex-wrap: nowrap; }
+.com-flex-1 { flex: 1 }
+.com-inline-flex { display: inline-flex; }
+
+.com-relative { position: relative; }
+.com-sticky-top { position: sticky; top: 0; }
+
+.com-z-index-top { z-index: 9999; }
+.com-z-index-10000 { z-index: 10000; }
+.com-z-index-1000 { z-index: 1000; }
+.com-z-index-100 { z-index: 100; }
+.com-z-index-10 { z-index: 10; }
+
+.com-gap-5 { gap: 5px; }
+.com-gap-10 { gap: 10px; }
+.com-gap-15 { gap: 15px; }
+.com-gap-20 { gap: 20px; }
+.com-gap-25 { gap: 25px; }
+.com-gap-30 { gap: 30px; }
+.com-gap-30 { gap: 35px; }
+.com-gap-40 { gap: 40px; }
+.com-gap-45 { gap: 45px; }
+.com-gap-50 { gap: 50px; }
+
+.com-font-size-1 { font-size: 0.8em; }
+.com-font-size-2 { font-size: 0.9em; }
+.com-font-size-3 { font-size: 1em; }
+.com-font-size-4 { font-size: 1.1em; }
+.com-font-size-5 { font-size: 1.3em; }
+.com-font-size-6 { font-size: 1.5em; }
+.com-font-size-7 { font-size: 1.7em; }
+.com-font-size-8 { font-size: 1.9em; }
+.com-font-size-9 { font-size: 2em; }
+
+.com-font-jua { font-family: 'Jua', sans-serif; }
+.com-font-thin { font-weight: 100; }
+.com-font-normal { font-weight: 400; }
+.com-font-bold { font-weight: bold; }
+.com-font-style-normal { font-style: normal; }
+
+.com-text-center { text-align: center; }
+.com-text-right { text-align: right; }
+.com-text-left { text-align: left; }
+.com-text-hover-underline:hover { text-decoration: underline; }
+.com-text-overflow { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+.com-padding-1 { padding: 5px; }
+.com-padding-2 { padding: 10px; }
+.com-padding-3 { padding: 15px; }
+.com-padding-4 { padding: 20px; }
+.com-padding-5 { padding: 25px; }
+.com-padding-6 { padding: 30px; }
+.com-padding-7 { padding: 35px; }
+.com-padding-8 { padding: 40px; }
+.com-padding-9 { padding: 45px; }
+.com-padding-list { padding: 5px 10px; }
+.com-padding-list-big { padding: 25px 5px; }
+.com-padding-input { padding: 5px 20px; }
+.com-padding-primary { padding: 10px 15px; }
+
+.com-margin-center { margin: 0 auto; }
+.com-margin-0 { margin: 0 !important; }
+.com-margin-10 { margin: 10px; }
+.com-margin-top-small { margin-top: 5px; }
+.com-margin-top-10 { margin-top: 10px; }
+.com-margin-top-15 { margin-top: 15px; }
+.com-margin-top-20 { margin-top: 20px; }
+.com-margin-top-30 { margin-top: 30px; }
+.com-margin-bottom-small { margin-bottom: 5px; }
+.com-margin-bottom-10 { margin-bottom: 10px; }
+.com-margin-bottom-20 { margin-bottom: 20px; }
+.com-margin-bottom-30 { margin-bottom: 30px; }
+.com-margin-bottom-50 { margin-bottom: 50px; }
+
+.com-width-100 { width: 100% }
+.com-max-width-1280 { max-width: 1280px; }
+.com-max-width-1680 { max-width: 1680px; }
+.com-max-width-1920 { max-width: 1920px; }
+
+.com-height-100 { height: 100% }
+
+.com-transition-bundle-05s { transition: color 0.5s ease, background-color 0.5s ease, border 0.5s ease; }
+
+.com-shadow-right { box-shadow: 3px 0px 6px rgba(0, 0, 0, 0.14); }
+.com-shadow-back { box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.3) }
+
+.com-scroll-y { overflow-y: auto; }
+.com-scroll-x { overflow-x: auto; }
+.com-overflow-hidden { overflow: hidden; }
+.com-no-scroll::-webkit-scrollbar { display: none; }
+
+.circle-0 { background: var(--zip-primary); }
+.circle-1 { background: var(--zip-circle1); }
+.circle-2 { background: var(--zip-circle2); }
+.circle-3 { background: var(--zip-circle3); }
+.circle-3 { background: var(--zip-circle4); }
+
+.hashtag { color: var(--zip-hashtag); }
+.rv-rate { color: var(--zip-rate); }
+.rv-like { color: var(--zip-like); }
+.rv-bookmark { color: var(--zip-blue); }
+
+.kakao { background: var(--sns-kakao); }
+.naver { background: var(--sns-naver); }
+.google { background: white; }
+
+input, select { background: none; border-bottom: 2px solid var(--zip-primary); color: var(--zip-text); }
+input:disabled, select:disabled { border-bottom: 2px solid #7373734d !important; color: #00000080; }
+input[type="checkbox"] { border: 2px solid var(--zip-primary); position: relative; border-radius: 3px; cursor: pointer; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+input[type="checkbox"]:checked::before { content: ""; background-color: var(--zip-primary); border-radius: 1px; }
+input[type="checkbox"]::before { display: block; }
+
+
+/* 카드형 목록 공통 페이지네이션 버튼 스타일 */
+.scroll-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 1; display: flex; justify-content: center; align-items: center; background: transparent; border: none; cursor: pointer; padding: 0; outline: none; transition: background-color 0.3s ease; }
+.scroll-btn .line { position: absolute; width: 25px; height: 6px; background: var(--zip-primary); transition: transform 0.2s ease, width 0.2s ease, left 0.2s ease, right 0.2s ease; transform-origin: center; border-radius: 10px; }
+.scroll-btn .line1 { transform: rotate(45deg) }
+.scroll-btn .line2 { transform: rotate(-45deg) }
+
+.scroll-btn:disabled { cursor: default; }
+.scroll-btn:disabled .line { width: 22px; }
+.scroll-btn:disabled .line1 { transform: rotate(90deg) }
+.scroll-btn:disabled .line2 { transform: rotate(-90deg) }
+
+.scroll-left::before,
+.scroll-right::before { content: ''; position: absolute; width: 40px; height: 55px; background: transparent; z-index: -1; }
+.scroll-left .line2,
+.scroll-left .line1 { position: absolute; transform-origin: left }
+.scroll-right .line1,
+.scroll-right .line2 { position: absolute; transform-origin: right }
+
+.scroll-left { left: -25px }
+.scroll-left::before { top: -30px; left: -22px }
+.scroll-left .line1 { bottom: 1px }
+.scroll-right { right: -25px }
+.scroll-right::before { top: -25px; left: -17px }
+.scroll-right .line1 { top: 1px }
+
+
+/* 맨 위로 스크롤하는 버튼 */
+.scroll-to-top { position: fixed; bottom: 45px; right: 20px; width: 50px; height: 50px; color: var(--zip-text-white); background-color: var(--zip-primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); cursor: pointer; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease, opacity 0.3s ease; font-size: 2em; animation: bounce 1.5s infinite; }
+.scroll-to-top:hover { opacity: 1 !important; }
+.scroll-to-top i { margin-top: -5px; }
+.scroll-to-top.visible { opacity: 0.5; visibility: visible; }
+
+
+/* 애니메이션 레퍼런스 */
+@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes rotateOut { 0% { transform: rotate(0deg); opacity: 1; } 100% { transform: rotate(180deg); opacity: 0; } }
+@keyframes rotateIn { 0% { transform: rotate(-180deg); opacity: 0; } 100% { transform: rotate(0deg); opacity: 1; } }
+@keyframes slideIn { 0% { transform: translateY(100%); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes slideOut { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-100%); opacity: 0; } }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+@keyframes blink { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes arrow-pulse { 0%, 100% { transform: translateY(-50%) translateX(0); } 50% { transform: translateY(-50%) translateX(-5px); } }
+
+/* 초기화, 공용 스타일시트 종료 -------------------------  */
+
+

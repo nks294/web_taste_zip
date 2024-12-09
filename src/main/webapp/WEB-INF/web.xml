@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/*context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		
+		<!-- 404에러를 @ControllerAdvice에서 처리하기 위해 추가 -->
+		<init-param>
+			<param-name>throwExceptionIfNoHandlerFound</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		
+		
+		<multipart-config>
+			<max-file-size>5242880</max-file-size><!-- 업로드할 한 개 파일의 최대 크기: 5MB(1024*1024*5) -->
+			<max-request-size>20971520</max-request-size><!-- 한번에 업로드할 수 있는 파일들의 최대 크기: 20MB(1024*1024*20) -->
+			<file-size-threshold>5242880</file-size-threshold><!-- 파일 한 개가 5MB(1024*1024*5)를 초과하면 임시 디렉토리에 저장 -->
+		</multipart-config>
+		
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+  <!-- 한글 처리 필터 -->
+  <filter>
+  	<filter-name>HangulEncoding</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+	<init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>HangulEncoding</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 자주 발생하는 에러에 대한 처리 -->
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error/error500.do</location>
+  </error-page>
+
+</web-app>

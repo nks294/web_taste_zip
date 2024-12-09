@@ -1,0 +1,278 @@
+/* -----------------------------------------
+        초기화 스타일시트: reset.css
+----------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.5;
+    overflow: auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: var(--zip-lightmode-bg); 
+    color: var(--zip-lightmode-text);
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+input, button, textarea {
+    border-radius: 0;
+    appearance: none;
+    border: none;
+}
+
+button:focus, input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+        
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* -----------------------------------------
+        공용 스타일시트: common.css
+----------------------------------------- */
+
+/* -------------------- */
+/*     색상 레퍼런스     */
+/* -------------------- */
+
+:root {
+    /* 다크모드 */
+    --zip-darkmode-primary: #737486;
+    --zip-darkmode-primary-hover: #d9dae6;
+    --zip-darkmode-secondary: #9b9fe4;
+    --zip-darkmode-hover: #2f2f3f;
+    --zip-darkmode-bg: #1C1C1E;  /* circle 0 */
+    --zip-darkmode-text: #ecf4f7;
+    --zip-darkmode-primary-tr: #e5e5e533;
+    --zip-darkmode-bg-third-tr: #4B556363;
+
+    --zip-darkmode-step-active: #9b9fe4;
+    --zip-darkmode-step-inactive: #4B5563;
+
+    --zip-darkmode-circle1: #6B7280;
+    --zip-darkmode-circle2: #4B5563;
+    --zip-darkmode-circle3: #1F2937;
+    
+    /* 라이트모드 */
+    --zip-lightmode-primary: #d0572f;
+    --zip-lightmode-primary-hover: #e9724b;
+    --zip-lightmode-secondary: #FF8C42; /* circle 0 */
+    --zip-lightmode-hover: #ffeacd;
+    --zip-lightmode-bg: #FFF7E5;
+    --zip-lightmode-text: #2E2E2E;
+    --zip-lightmode-primary-tr: #d0572f33;
+    --zip-lightmode-bg-third-tr: #ffbd8763;
+
+    --zip-lightmode-step-active: #d0572f;
+    --zip-lightmode-step-inactive: lightgray;
+
+    --zip-lightmode-circle1: #FFA559;
+    --zip-lightmode-circle2: #ffbd87;
+    --zip-lightmode-circle3: #FFF7E5;
+
+    /* 상태 색상 */
+    --zip-success: #62C370;
+    --zip-warning: #FFA400;
+    --zip-error: #D84315;
+
+    /* SNS 색상 */
+    --sns-kakao: #FEE500;
+    --sns-naver: #03C75A;
+}
+
+
+/* -------------------- */
+/*   라이트모드 스타일   */
+/* -------------------- */
+
+/* 스크롤바 */
+* ::-webkit-scrollbar { width: 14px; height: 14px; }
+* ::-webkit-scrollbar-track { background-color: var(--zip-lightmode-bg); margin: 3px; border-radius: 8px; }
+* ::-webkit-scrollbar-thumb { background-color: var(--zip-lightmode-primary); border-radius: 8px; border: 3px solid var(--zip-lightmode-bg); }
+* ::-webkit-scrollbar-thumb:hover { background-color: var(--zip-lightmode-primary-hover); }
+
+/* 공용 스타일들 */
+body { color: var(--zip-lightmode-text) }
+.hidden { display: none !important; } /* 숨기기 */
+.com-bg { background: var(--zip-lightmode-bg); } /* 배경색 */
+.com-bg-primary-tr { background: var(--zip-lightmode-primary-tr); } /* 반투명 배경색 */
+.com-color { color: var(--zip-lightmode-text); } /* 글씨 색 */
+.com-color-primary { color: var(--zip-lightmode-primary); } /* 메인 색상 */
+.com-round { border-radius: 5px; } /* 공통 라운딩처리 */
+.com-round-up { border-radius: 5px 5px 0 0; } /* 위쪽만 라운딩 */
+.com-round-down { border-radius: 0 0 5px 5px; } /* 아래쪽만 라운딩 */
+.com-border { transition: border-color 0.5s ease; border: 2px solid var(--zip-lightmode-primary); } /* 공통 테두리 */
+.com-border-right { transition: border-color 0.5s ease; border-right: 2px solid var(--zip-lightmode-primary) } /* 공통 오른쪽 테두리 */
+.com-border-bottom { transition: border-color 0.5s ease; border-bottom: 2px solid var(--zip-lightmode-primary) } /* 공통 아래쪽 테두리 */
+.com-border-bottom-thin { transition: border-color 0.5s ease; border-bottom: 1px solid var(--zip-lightmode-primary) } /* 공통 아래쪽 얇은 테두리 */
+.com-border-top { transition: border-color 0.5s ease; border-top: 2px solid var(--zip-lightmode-primary) } /* 공통 위쪽 테두리 */
+.com-border-head { border-bottom: none !important; }
+.com-shadow { transition: box-shadow 0.5s ease; box-shadow: 5px 5px 0px 0px var(--zip-lightmode-primary);}
+
+/* 체크박스 레퍼런스 */
+input[type="checkbox"] { border: 2px solid var(--zip-lightmode-primary); position: relative; display: inline-block; font-family: 'FontAwesome';  border-radius: 2px; cursor: pointer; }
+input[type="checkbox"]:checked::before { content: "✔"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--zip-lightmode-primary); display: block; }
+input[type="checkbox"]::before { display: block; }
+
+/* 카드형 목록 호버 이펙트 */
+.com-list-hover-animate { transition: box-shadow 0.3s ease, transform 0.3s ease !important; }
+.com-list-hover-animate:hover { box-shadow: 3px 3px 0px 0px var(--zip-lightmode-primary); transform: scale(1.01);  }
+
+/* 공통 버튼 레퍼런스 */
+.com-btn-primary { background: var(--zip-lightmode-primary); color: var(--zip-darkmode-text); cursor: pointer; transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease !important; }
+.com-btn-primary:hover { background: var(--zip-lightmode-primary-hover); }
+.com-btn-secondary { background: var(--zip-lightmode-bg); cursor: pointer; transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease !important; }
+.com-btn-secondary:hover { background: var(--zip-lightmode-hover); }
+.com-btn-circle { display: flex; width: 50px; height: 50px; border-radius: 20px; justify-content: center; align-items: center; font-size: 1.4em;}
+
+/* 트랜지션 원 스타일 */
+.circle-0 { background: var(--zip-lightmode-secondary); }
+.circle-1 { background: var(--zip-lightmode-circle1); }
+.circle-2 { background: var(--zip-lightmode-circle2); }
+.circle-3 { background: var(--zip-lightmode-circle3); }
+
+/* 비활성화 상태 */
+input:disabled { background: var(--zip-lightmode-bg); border: 1px solid rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.5); }
+button:disabled { background: var(--zip-lightmode-primary-tr); color: rgba(0, 0, 0, 0.5); }
+
+
+/* -------------------- */
+/*    다크모드 스타일    */
+/* -------------------- */
+
+/* 기본 모드간 색상전환 */
+html.dark-mode {
+    --zip-lightmode-primary: var(--zip-darkmode-primary);
+    --zip-lightmode-primary-hover: var(--zip-darkmode-primary-hover);
+    --zip-lightmode-secondary: var(--zip-darkmode-secondary);
+    --zip-lightmode-hover: var(--zip-darkmode-hover);
+    --zip-lightmode-bg: var(--zip-darkmode-bg);
+    --zip-lightmode-text: var(--zip-darkmode-text);
+    --zip-lightmode-primary-tr: var(--zip-darkmode-primary-tr);
+    --zip-lightmode-bg-third-tr: var(--zip-darkmode-bg-third-tr);
+
+    --zip-lightmode-step-active: var(--zip-darkmode-step-active);
+    --zip-lightmode-step-inactive: var(--zip-darkmode-step-inactive);
+
+    --zip-lightmode-circle1: var(--zip-darkmode-circle1);
+    --zip-lightmode-circle2: var(--zip-darkmode-circle2);
+    --zip-lightmode-circle3: var(--zip-darkmode-circle3);
+}
+
+html.dark-mode .logo img,
+html.dark-mode .form-logo img { filter: brightness(0) saturate(100%) invert(1); }
+
+html.dark-mode .com-color { color: var(--zip-darkmode-text); }
+html.dark-mode .com-color-primary { color: var(--zip-lightmode-text); }
+
+html.dark-mode .com-btn-primary { color: var(--zip-lightmode-text) !important; }
+
+/* 모드 전환 아이콘 */
+html.dark-mode .mode-icon::before { transform: rotateZ(180deg); opacity: 0; }
+html.dark-mode .mode-icon::after { transform: rotateZ(0deg); opacity: 1; }
+
+/* 트랜지션 원 스타일중 마지막 원 */
+html.dark-mode .circle-3 { background: var(--zip-darkmode-bg); }
+
+/* 비활성화 상태 */
+html.dark-mode input:disabled {background: rgba(255, 255, 255, 0.05); border: 1px solid var(--zip-darkmode-circle3); color: var(--zip-darkmode-primary-tr); }
+html.dark-mode button:disabled { background: rgba(255, 255, 255, 0.1);  color: var(--zip-darkmode-primary-tr); }
+
+/* (임시) 로고 색반전으로 연출 */
+html.dark-mode .logo img,
+html.dark-mode .form-logo img { filter: brightness(0) saturate(100%) invert(1); }
+
+
+/* -------------------- */
+/*      팝업 스타일      */
+/* -------------------- */
+
+.popup { position: fixed; top: -50%; left: 50%; transform: translate(-50%, 0); z-index: 9999; width: 300px; text-align: center; opacity: 0; transition: top 0.5s ease, opacity 0.5s ease; }
+.popup.active { top: 50%; transform: translate(-50%, -50%); opacity: 1; }
+.popup.closing { top: -50%; opacity: 0; }
+.popup-content { max-height: 40vh; overflow-y: auto; padding: 20px; border-radius: 10px; }
+.popup-message { font-size: 16px; margin-bottom: 10px; }
+#popup-close-btn { margin-top: 10px; padding: 10px 20px; font-size: 14px; }
+
+
+/* --------------------------- */
+/*      애니메이션 레퍼런스      */
+/* --------------------------- */
+
+@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes rotateOut { 0% { transform: rotate(0deg); opacity: 1; } 100% { transform: rotate(180deg); opacity: 0; } }
+@keyframes rotateIn { 0% { transform: rotate(-180deg); opacity: 0; } 100% { transform: rotate(0deg); opacity: 1; } }
+@keyframes slideIn { 0% { transform: translateY(100%); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes slideOut { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-100%); opacity: 0; } }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+
+
+/* --------------------------- */
+/*    반응형 미디어쿼리 기본     */
+/* --------------------------- */
+
+/* 기본 (1025px 이상) */
+html, body { font-size: 18px; min-width: 1680px; }
+/* 태블릿 (481px ~ 1024px) (이 넓이부터 하단바 활성화) */
+@media screen and (min-width: 481px) and (max-width: 1024px) { html, body { font-size: 17px; min-width: auto; } }
+/* 모바일 (480px 이하) */
+@media screen and (max-width: 480px) { html, body { font-size: 16px; min-width: auto; } }

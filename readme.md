@@ -41,22 +41,22 @@
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/kinari4041">
-        <img src="https://github.com/kinari4041.png" width="100px;" alt="Github user kinari4041's profile"/>
+      <a href="https://github.com/nks294">
+        <img src="https://github.com/nks294.png" width="100px;" alt="Github user nks294's profile"/>
         <br />
         <strong>팀장 조희성</strong>
       </a>
-      <br />
-      프론트엔드
-    </td>
-    <td align="center">
-      <a href="https://github.com/jhjhjjhjhjhj">
-        <img src="https://github.com/jhjhjjhjhjhj.png" width="100px;" alt="Github user jhjhjjhjhjhj's profile"/>
         <br />
-        <strong>팀원 오준혁</strong>
-      </a>
-      <br />
-      프론트엔드
+        <p>프로젝트 총괄</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      - 프로젝트의 전반적인 기획 및 일정 관리 <br />
+      - 팀원들의 Pull Request 검토 및 피드백 제공 <br />
+      - UI, UX 디자인 및 레이아웃 설계 <br />
+      - 반응형 웹 디자인 적용으로 모바일 및 데스크톱 지원 <br />
+      - AJAX를 사용한 REST API 통신 및 데이터 처리 <br />
     </td>
   </tr>
 </table>
@@ -65,22 +65,70 @@
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/g34634">
-        <img src="https://github.com/g34634.png" width="100px;" alt="Github user g34634's profile"/>
+      <a href="https://github.com/jhjhjjhjhjhj">
+        <img src="https://github.com/jhjhjjhjhjhj.png" width="100px;" alt="Github user jhjhjjhjhjhj's profile"/>
         <br />
-        <strong>팀원 정찬희</strong>
+        <strong>팀원 오준혁</strong>
       </a>
-      <br />
-      백엔드
+        <br />
+        <p>프론트엔드 보조, 백엔드 담당</p>
     </td>
+  </tr>
+  <tr>
+    <td align="left">
+      - 공공 API 데이터 사용 및 데이터 전처리 진행 <br />
+      - 마이페이지, 지도 페이지 레이아웃 설계 <br />
+      - figma를 활용한 반응형 모바일 웹 화면 구성 <br />
+      - 플레이스, 리뷰, 마이페이지 화면 기능 구현 <br />
+      - 문장유사도 방식을 통한 리뷰 필터링 구현 <br />
+      - 리뷰 관련 테이블 설계 및 컨트롤러 구성 <br />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <td align="center">
       <a href="https://github.com/qwer1234qwe123">
         <img src="https://github.com/qwer1234qwe123.png" width="100px;" alt="Github user qwer1234qwe123's profile"/>
         <br />
         <strong>팀원 전영준</strong>
       </a>
-      <br />
-      백엔드
+        <br />
+        <p>백엔드 담당</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      - 공공 API 데이터 사용 및 데이터 전처리 진행 <br />
+      - 일반 로그인 및 회원가입 기능 구현 <br />
+      - Open API를 활용한 SNS 간편로그인 구현 <br />
+      - 각 음식점별 카테고리 데이터 분류 및 맵핑 <br />
+      - 음식점 평점 테이블 설계 및 순위 출력 구현 <br />
+      - 음식점 키워드 검색 필터링 구현 <br />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/g34634">
+        <img src="https://github.com/g34634.png" width="100px;" alt="Github user g34634's profile"/>
+        <br />
+        <strong>팀원 정찬희</strong>
+      </a>
+        <br />
+        <p>백엔드 담당</p>
+    </td>
+  <tr>
+  <tr>
+    <td align="left">
+      - 공공 API 데이터 사용 및 데이터 전처리 진행 <br />
+      - 카카오 API를 사용한 지도 페이지 구현 <br />
+      - 게시판 테이블 설계 및 컨트롤러 구성 <br />
+      - 전체적인 데이터베이스 설계 및 테이블 구성 <br />
+      - 첨부파일 관련 테이블 구성 및 기능 구현 <br />
     </td>
   </tr>
 </table>

@@ -190,11 +190,6 @@ $(document).ready(function() {
         }
     }
 
-    // 모바일 확인함수
-    function isMobile() {
-        return window.matchMedia("(max-width: 1024px)").matches;
-    }
-
     let overlays = [];
     let markers = [];
 
@@ -206,7 +201,7 @@ $(document).ready(function() {
         overlays = [];
 
         $.ajax({
-            url: '/places/region',
+            url: contextPath + '/places/region',
             method: 'GET',
             data: {
                 region: regionName

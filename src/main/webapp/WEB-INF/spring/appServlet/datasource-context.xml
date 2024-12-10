@@ -15,20 +15,18 @@
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-			    <!-- <value>classpath:/datasource.properties</value> -->
 				<value>classpath:/application.properties</value> 
 			</list>
 		</property>
 	</bean>
 	
+	<!-- driverClassName 프로퍼티 값을 세팅하면 persistence.xml에서 
+	     hibernate.dialect(사용하는 DB 종류를 지정하는 속성) 프로퍼티가 자동으로 설정되게 함 -->
 	<bean id="jpaDataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<!-- driverClassName 프로퍼티 값을 세팅하면 persistence.xml에서 
-		     hibernate.dialect(사용하는 DB 종류를 지정하는 속성) 프로퍼티가 자동으로 설정되게 함 -->
-		<property name="url" value="${MYSQL_URL}" />
-		<property name="username" value="${MYSQL_USER}" />
-		<property name="password" value="${MYSQL_PASSWORD}" />
-
+		<property name="driverClassName" value="${DB_DRIVER}" />
+		<property name="url" value="${DB_URL}" />
+		<property name="username" value="${DB_USER}" />
+		<property name="password" value="${DB_PASSWORD}" />
 	</bean>
 	
 	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

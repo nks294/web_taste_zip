@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="ko">
     <%@ include file="module/core.jsp" %>
-    <script type="text/javascript" src="/resources/js/submitPlace.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/submitPlace.js"></script>
 
 <body>
     <div class="submit-form">
         <h2>맛집 등록하기</h2>
-        <form id="placeSubmitForm" action="/places/submit" method="POST">
+        <form id="placeSubmitForm" action="${pageContext.request.contextPath}/places/submit" method="POST">
             <div class="form-group">
                 <label for="title">가게명</label>
                 <input type="text" id="title" name="title" required>

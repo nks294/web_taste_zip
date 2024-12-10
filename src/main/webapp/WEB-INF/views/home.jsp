@@ -7,9 +7,9 @@
     <%@ include file="module/core.jsp" %>
 
     <!-- 메인화면 JS -->
-    <script type="text/javascript" src="/resources/js/home.js"></script>
-    <script type="text/javascript" src="/resources/js/mainBanner.js"></script>
-    <script type="text/javascript" src="/resources/js/mapSmall.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mainBanner.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mapSmall.js"></script>
     
     <body class="com-no-select">
         <!-- 헤더 -->
@@ -19,11 +19,11 @@
         <section id="main-banner" class="com-margin-0 com-width-100">
             <div class="main-banner-wrapper com-relative com-overflow-hidden">
                 <div class="banner-slides">
-                    <a href="/notice/4"><img src="/resources/img/example/example_image_01.jpg" alt="이번주 리뷰왕은 누구?" data-link="/notice/4" data-title="이번주 리뷰왕은 누구?"></a>
-                    <a href="/notice/5"><img src="/resources/img/example/example_image_02.jpg" alt="나만의 마커 커스터마이징 오픈!" data-link="/notice/5" data-title="나만의 마커 커스터마이징 오픈!"></a>
-                    <a href="/notice/6"><img src="/resources/img/example/example_image_03.jpg" alt="이번달의 맛.zip 테마: #흑백요리사" data-link="/notice/6" data-title="이번달의 맛.zip 테마: #흑백요리사"></a>
-                    <a href="/notice/7"><img src="/resources/img/example/example_image_04.jpg" alt='"클린 리뷰" 캠페인' data-link="/notice/7" data-title='"클린 리뷰" 캠페인'></a>
-                    <a href="/notice/8"><img src="/resources/img/example/example_image_05.jpg" alt="신상 아이콘 4종 등장!" data-link="/notice/8" data-title="신상 아이콘 4종 등장!"></a>
+                    <a href="${pageContext.request.contextPath}/notice/4"><img src="${pageContext.request.contextPath}/resources/img/example/example_image_01.jpg" alt="이번주 리뷰왕은 누구?" data-link="/notice/4" data-title="이번주 리뷰왕은 누구?"></a>
+                    <a href="${pageContext.request.contextPath}/notice/5"><img src="${pageContext.request.contextPath}/resources/img/example/example_image_02.jpg" alt="나만의 마커 커스터마이징 오픈!" data-link="/notice/5" data-title="나만의 마커 커스터마이징 오픈!"></a>
+                    <a href="${pageContext.request.contextPath}/notice/6"><img src="${pageContext.request.contextPath}/resources/img/example/example_image_03.jpg" alt="이번달의 맛.zip 테마: #흑백요리사" data-link="/notice/6" data-title="이번달의 맛.zip 테마: #흑백요리사"></a>
+                    <a href="${pageContext.request.contextPath}/notice/7"><img src="${pageContext.request.contextPath}/resources/img/example/example_image_04.jpg" alt='"클린 리뷰" 캠페인' data-link="/notice/7" data-title='"클린 리뷰" 캠페인'></a>
+                    <a href="${pageContext.request.contextPath}/notice/8"><img src="${pageContext.request.contextPath}/resources/img/example/example_image_05.jpg" alt="신상 아이콘 4종 등장!" data-link="/notice/8" data-title="신상 아이콘 4종 등장!"></a>
                 </div>
                 <div class="banner-pagination-dots-wrapper com-width-100 com-padding-4 com-flex-row com-flex-align-center com-flex-justify-center">
                     <div class="banner-pagination-dots-contents com-max-width-1280 com-flex-row com-flex-align-center com-flex-justify-center">
@@ -68,7 +68,7 @@
             </section>
             
             <section id="foo-banner1" class="com-relative com-border-thin com-round-20 com-flex-row com-flex-align-center com-flex-justify-center com-overflow-hidden" style="color: var(--zip-lightmode-text); height:250px; max-width:1630px;">
-                <img src="/resources/img/example/example_image_06.jpg" alt="다용도 배너1" class="com-img-fit">
+                <img src="${pageContext.request.contextPath}/resources/img/example/example_image_06.jpg" alt="다용도 배너1" class="com-img-fit">
                 <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--zip-white); padding: 15px; border-radius:10px; background: #00000033">배너1</span>
             </section>
 
@@ -108,7 +108,7 @@
             </section>
 
             <section id="foo-banner2" class="com-relative com-border-thin com-round-20 com-flex-row com-flex-align-center com-flex-justify-center com-overflow-hidden" style="color: var(--zip-lightmode-text); height:250px; max-width:1630px;">
-                <img src="/resources/img/example/example_image_07.jpg" alt="다용도 배너2" class="com-img-fit">
+                <img src="${pageContext.request.contextPath}/resources/img/example/example_image_07.jpg" alt="다용도 배너2" class="com-img-fit">
                 <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--zip-white); padding: 15px; border-radius:10px; background: #00000033">배너2</span>
             </section>
             
@@ -147,7 +147,7 @@
             </section>
             
             <section id="foo-banner3" class="com-relative com-border-thin com-round-20 com-flex-row com-flex-align-center com-flex-justify-center com-overflow-hidden" style="color: var(--zip-lightmode-text); height:250px; max-width:1630px;">
-                <img src="/resources/img/example/example_image_08.jpg" alt="다용도 배너3" class="com-img-fit">
+                <img src="${pageContext.request.contextPath}/resources/img/example/example_image_08.jpg" alt="다용도 배너3" class="com-img-fit">
                 <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--zip-white); padding: 15px; border-radius:10px; background: #00000033">배너3</span>
             </section>
             

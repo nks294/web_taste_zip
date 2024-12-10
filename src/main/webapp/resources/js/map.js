@@ -25,7 +25,7 @@ $(function () {
                     position: currentPosition,
                     map: map,
                     image: new kakao.maps.MarkerImage(
-                        $('#currentUserProfileImage').val() || '/resources/img/default-profile.png',
+                        $('#currentUserProfileImage').val() || contextPath + '/resources/img/default-profile.png',
                         new kakao.maps.Size(50, 50),
                         {offset: new kakao.maps.Point(25, 25)}
                     )
@@ -173,7 +173,7 @@ $(function () {
     // 데이터 가져오기
     function loadPlaces() {
         $.ajax({
-            url: '/places/searchOrCategory',
+            url: contextPath + '/places/searchOrCategory',
             method: 'GET',
             data: {
                 category: currentCategory,
@@ -229,7 +229,7 @@ $(function () {
         }
     
         return $.ajax({
-            url: `/places/api/places/${placeId}/stats`,
+            url: `${contextPath}/places/api/places/${placeId}/stats`,
             method: 'GET',
             dataType: 'json'
         }).then(stats => {
@@ -380,7 +380,7 @@ $(function () {
         bookmarkIcon.toggleClass('far fas');
 
         $.ajax({
-            url: '/places/api/bookmarks/toggle',
+            url: contextPath + '/places/api/bookmarks/toggle',
             method: 'POST',
             data: JSON.stringify({ placeId: placeId }),
             contentType: 'application/json'
@@ -390,7 +390,7 @@ $(function () {
     // 북마크 초기화
     function initializeBookmarkState(placeId) {
         $.ajax({
-            url: '/places/api/bookmarks/check/' + placeId,
+            url: contextPath + '/places/api/bookmarks/check/' + placeId,
             method: 'GET',
             dataType: 'json',
             success: function(isBookmarked) {
@@ -400,7 +400,7 @@ $(function () {
                     const place = placesData.find(p => p.placeId === placeId);
                     if(place && place.marker) {
                         const bookmarkedMarkerImage = new kakao.maps.MarkerImage(
-                            '/resources/img/marker_bookmarked.png',
+                            contextPath + '/resources/img/marker_bookmarked.png',
                             new kakao.maps.Size(30, 35),
                             { offset: new kakao.maps.Point(12, 35) }
                         );
@@ -431,7 +431,7 @@ $(function () {
 
         if(isBookmarkMode) {
             $.ajax({
-                url: '/places/api/bookmarks',
+                url: contextPath + '/places/api/bookmarks',
                 method: 'GET',
                 dataType: 'json',
                 success: function(bookmarkedPlaces) {
@@ -441,7 +441,7 @@ $(function () {
 
                         const markerPosition = new kakao.maps.LatLng(place.mapy, place.mapx);
                         const bookmarkedMarkerImage = new kakao.maps.MarkerImage(
-                            '/resources/img/marker_bookmarked.png',
+                            contextPath + '/resources/img/marker_bookmarked.png',
                             new kakao.maps.Size(30, 35),
                             { offset: new kakao.maps.Point(12, 35) }
                         );
@@ -489,7 +489,7 @@ $(function () {
                         position: currentPosition,
                         map: map,
                         image: new kakao.maps.MarkerImage(
-                            $('#currentUserProfileImage').val() || '/resources/img/default-profile.png',
+                            $('#currentUserProfileImage').val() || contextPath + '/resources/img/default-profile.png',
                             new kakao.maps.Size(50, 50),
                             {offset: new kakao.maps.Point(25, 25)}
                         )
@@ -627,7 +627,7 @@ $(function () {
                 $icon.toggleClass('far fas');
                 
                 $.ajax({
-                    url: `/api/reviews/${reviewId}/like/count`,
+                    url: `${contextPath}/api/reviews/${reviewId}/like/count`,
                     method: 'GET',
                     dataType: 'json',
                     success: function(count) {
@@ -711,7 +711,7 @@ $(function () {
         formData.append("review", JSON.stringify(reviewData));
 
         $.ajax({
-            url: '/api/reviews/create',
+            url: contextPath + '/api/reviews/create',
             method: 'POST',
             data: formData,
             processData: false,
@@ -728,7 +728,7 @@ $(function () {
                 $('#reviewImage').val('');
 
                 $.ajax({
-                    url: `/api/characters/points/add/${$('#currentUserMemIdx').val()}`,
+                    url: `${contextPath}/api/characters/points/add/${$('#currentUserMemIdx').val()}`,
                     method: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ points: 1 }),
@@ -764,7 +764,7 @@ $(function () {
     if((urlParams.get('from') === 'review' || urlParams.get('from') === 'myzip' || !urlParams.get('from')) && placeId) {
         setTimeout(() => {
             $.ajax({
-                url: '/places/api/getPlace/' + placeId,
+                url: contextPath + '/places/api/getPlace/' + placeId,
                 method: 'GET',
                 success: function(place) {
                     currentPlaceId = place.placeId;
@@ -795,7 +795,7 @@ $(function () {
         const currentUserMemIdx = $('#currentUserMemIdx').val();
         if (currentUserMemIdx) {
             $.ajax({
-                url: `/api/reviews/${reviewId}/like/check`,
+                url: `${contextPath}/api/reviews/${reviewId}/like/check`,
                 method: 'GET',
                 dataType: 'json',
                 data: { memIdx: currentUserMemIdx },
@@ -812,7 +812,7 @@ $(function () {
     // 선택한 식당의 리뷰 목록 불러오기
     function loadPlaceReviews(placeId) {
         $.ajax({
-            url: '/api/reviews/place/' + placeId,
+            url: contextPath + '/api/reviews/place/' + placeId,
             method: 'GET',
             dataType: 'json',
             success: function(reviews) {
@@ -834,7 +834,7 @@ $(function () {
                     const profileSection = $('<div>').addClass('review-profile');
                     const profileImg = $('<img>')
                         .addClass('review-profile-image')
-                        .attr('src', review.profileImage || '/resources/img/default-profile.png')
+                        .attr('src', review.profileImage || contextPath + contextPath + '/resources/img/default-profile.png')
                         .attr('alt', 'Profile Image')
                         .css('cursor', 'pointer')
                         .click(function() {
@@ -884,7 +884,7 @@ $(function () {
     
                     // 좋아요 수 가져오기
                     $.ajax({
-                        url: `/api/reviews/${review.reviewId}/like/count`,
+                        url: `${contextPath}/api/reviews/${review.reviewId}/like/count`,
                         method: 'GET',
                         dataType: 'json',
                         success: function(count) {

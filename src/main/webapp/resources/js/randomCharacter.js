@@ -45,7 +45,7 @@ $(function () {
 
     function refreshPoints(memIdx) {
         $.ajax({
-            url: `/api/characters/points/${memIdx}`,
+            url: `${contextPath}/api/characters/points/${memIdx}`,
             method: 'GET',
             dataType: 'json',
             success: function(points) {
@@ -62,7 +62,7 @@ $(function () {
         
         try {
             const response = await $.ajax({
-                url: `/api/characters/member/${memberId}`,
+                url: `${contextPath}/api/characters/member/${memberId}`,
                 method: 'GET'
             });
     
@@ -115,7 +115,7 @@ $(function () {
     
             try {
                 const character = await $.ajax({
-                    url: `/api/characters/random/${memIdx}`,
+                    url: `${contextPath}/api/characters/random/${memIdx}`,
                     method: 'POST',
                     contentType: 'application/json',
                     dataType: 'json'
@@ -126,7 +126,7 @@ $(function () {
                 if (isOwned) {
                     try {
                         await $.ajax({
-                            url: `/api/characters/points/add/${memIdx}`,
+                            url: `${contextPath}/api/characters/points/add/${memIdx}`,
                             method: 'POST',
                             data: JSON.stringify({ points: 5 }),
                             contentType: 'application/json'

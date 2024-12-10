@@ -54,7 +54,7 @@ $(document).ready(function() {
 
          function fetchData() {
             $.ajax({
-                url: '/cds/products/getMoreProducts',
+                url: contextPath + '/cds/products/getMoreProducts',
                 method: 'GET',
                 data: { page: page, size: pageSize, category: currentCategory, 
                      location: currentLocation, searchTerm: currentSearchTerm },
@@ -247,7 +247,7 @@ function createProductCard(item) {
               $('.product-grid').empty();
         
               $.ajax({
-                  url: '/cds/products/searchProducts',
+                  url: contextPath + '/cds/products/searchProducts',
                   method: 'GET',
                   data: { 
                       searchTerm: searchTerm,

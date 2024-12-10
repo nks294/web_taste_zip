@@ -17,7 +17,7 @@ $(document).ready(function () {
     // 리뷰 불러오기 및 추가로 불러오기 버튼 클릭
     loadReviewsButton.on('click', function () {
         $.ajax({
-            url: '/api/reviews/all',
+            url: contextPath + '/api/reviews/all',
             method: 'GET',
             dataType: 'json',
             data: {
@@ -251,7 +251,7 @@ $(document).ready(function () {
         
         if (confirm('이 리뷰를 삭제하시겠습니까?')) {
             $.ajax({
-                url: `/api/reviews/${reviewId}`,
+                url: `${contextPath}/api/reviews/${reviewId}`,
                 type: 'DELETE',
                 success: function() {
                     $(this).closest('.similarity-group').remove();
@@ -275,7 +275,7 @@ $(document).ready(function () {
                 const reviewId = $(this).find('.original-review strong').text().split(': ')[1];
                 
                 const promise = $.ajax({
-                    url: `/api/reviews/${reviewId}`,
+                    url: `${contextPath}/api/reviews/${reviewId}`,
                     type: 'DELETE'
                 });
                 

@@ -12,7 +12,7 @@ $(document).ready(function () {
             if (!$('#tab-body .tbody.active').length) return;
             
             $.ajax({
-                url: '/board/write.do?type=' + type,
+                url: contextPath + '/board/write.do?type=' + type,
                 method: 'GET',
                 success: function (data) {
                     const contentDiv = $('#tab-body .tbody.active');

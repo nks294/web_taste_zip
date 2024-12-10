@@ -6,7 +6,6 @@
     <!-- <head> 태그 -->
     <%@ include file="module/core.jsp" %>
 
-    <script src="${pageContext.request.contextPath}/resources/js/board.js"></script>
 	<script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
     
     <body>

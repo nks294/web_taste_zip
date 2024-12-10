@@ -21,15 +21,12 @@ $(function () {
     }
 
     function loadMemberReviews(memIdx) {
-        console.log('Starting to load reviews for member:', memIdx);
         $.ajax({
-            url: `/api/reviews/member/${memIdx}`,
+            url: `${contextPath}/api/reviews/member/${memIdx}`,
             method: 'GET',
             dataType: 'json',
             success: function (reviews) {
-                console.log('Raw reviews data received:', reviews);
                 reviews = typeof reviews === 'string' ? JSON.parse(reviews) : reviews;
-                console.log('Processed reviews data:', reviews);
     
                 const listContainer = $('#review .item-grid');
                 listContainer.empty(); 
@@ -44,12 +41,12 @@ $(function () {
                                 urls = JSON.parse(urls);
                             }
                             const fullUrl = urls[0].startsWith('/') ? urls[0] : `/${urls[0]}`;
-                            imageHtml = `<img src="${fullUrl}" alt="Restaurant Image" class="com-img-fit">`;
+                            imageHtml = `<img src="${contextPath}/${fullUrl}" alt="Restaurant Image" class="com-img-fit">`;
                         } catch (e) {
-                            imageHtml = '<img src="/resources/img/default-image.png" alt="Default Image" class="com-img-fit">';
+                            imageHtml = `<img src="${contextPath}/resources/img/default-image.png" alt="Default Image" class="com-img-fit">`;
                         }
                     } else {
-                        imageHtml = '<img src="/resources/img/default-image.png" alt="Default Image" class="com-img-fit">';
+                        imageHtml = `<img src="${contextPath}/resources/img/default-image.png" alt="Default Image" class="com-img-fit">`;
                     }
     
                     const listItem = `
@@ -82,7 +79,7 @@ $(function () {
                 });
             },
             error: function (xhr, status, error) {
-                console.log('Ajax error:', {
+                console.error('Ajax error:', {
                     status: status,
                     error: error,
                     response: xhr.responseText
@@ -94,14 +91,12 @@ $(function () {
     function loadLikedReviews() {
         const memIdx = $('#myzip').data('member');
         $.ajax({
-            url: `/api/reviews/member/${memIdx}/liked`,
+            url: `${contextPath}/api/reviews/member/${memIdx}/liked`,
             method: 'GET',
             dataType: 'json',
             success: function (reviews) {
                 const listContainer = $('#like .item-grid');
                 listContainer.empty();
-    
-                console.log(reviews)
 
                 reviews.forEach((review) => {
                     let imageHtml = '';
@@ -114,10 +109,10 @@ $(function () {
                             const fullUrl = urls[0].startsWith('/') ? urls[0] : `/${urls[0]}`;
                             imageHtml = `<img src="${fullUrl}" alt="Restaurant Image" class="com-img-fit">`;
                         } catch (e) {
-                            imageHtml = `<img src="/resources/img/default-image.png" alt="Default Image"> class="com-img-fit"`;
+                            imageHtml = `<img src="${contextPath}/resources/img/default-image.png" alt="Default Image"> class="com-img-fit"`;
                         }
                     } else {
-                        imageHtml = `<img src="/resources/img/default-image.png" alt="Default Image"> class="com-img-fit"`;
+                        imageHtml = `<img src="${contextPath}/resources/img/default-image.png" alt="Default Image"> class="com-img-fit"`;
                     }
     
                     const listItem = `
@@ -153,7 +148,7 @@ $(function () {
     function loadBookmarkedPlaces() {
         const memberId = $('#myzip').data('member');
         $.ajax({
-            url: `/places/api/bookmarks/${memberId}`,
+            url: `${contextPath}/places/api/bookmarks/${memberId}`,
             method: 'GET',
             dataType: 'json',
             success: function (places) {
@@ -187,11 +182,11 @@ $(function () {
         const memberId = $('#myzip').data('member');
     
         $.ajax({
-            url: `/api/characters/list`,
+            url: `${contextPath}/api/characters/list`,
             method: 'GET',
             success: function(allCharacters) {
                 $.ajax({
-                    url: `/api/characters/member/${memberId}`,
+                    url: `${contextPath}/api/characters/member/${memberId}`,
                     method: 'GET',
                     success: function(ownedCharacters) {
                         const ownedCharacterIds = ownedCharacters.map(character => character.characterId);
@@ -204,7 +199,7 @@ $(function () {
     
                             const characterCard = $(`
                                 <li class="item-card character-card com-flex-col com-flex-align-center com-flex-justify-center">
-                                    <img src="${character.characterImage}" alt="${character.characterName}" style="width: 200px;">
+                                    <img src="${contextPath}/resources/img/character/${character.characterImage}" alt="${character.characterName}" style="width: 200px;">
                                     <span class="com-font-size-6 com-font-jua">
                                         ${character.characterName}
                                     </span>
@@ -262,7 +257,7 @@ $(function () {
         const currentUserMemIdx = $('#memberIdx').val();
         
         $.ajax({
-            url: `/api/reviews/${reviewId}/isOwner?memIdx=${currentUserMemIdx}`,
+            url: `${contextPath}/api/reviews/${reviewId}/isOwner?memIdx=${currentUserMemIdx}`,
             method: 'GET',
             dataType: 'json',
             success: function(isOwner) {
@@ -275,7 +270,7 @@ $(function () {
                     
                     moreOptions.find('.edit-review').on('click', function() {
                         $.ajax({
-                            url: `/api/reviews/${reviewId}`,
+                            url: `${contextPath}/api/reviews/${reviewId}`,
                             method: 'GET',
                             dataType: 'json',
                             success: function(review) {
@@ -389,7 +384,7 @@ $(function () {
                                     formData.append("review", JSON.stringify(updatedReview));
     
                                     $.ajax({
-                                        url: `/api/reviews/${reviewId}`,
+                                        url: `${contextPath}/api/reviews/${reviewId}`,
                                         method: 'PUT',
                                         contentType: 'application/json',
                                         data: JSON.stringify(updatedReview),
@@ -407,7 +402,7 @@ $(function () {
                     moreOptions.find('.delete-review').on('click', function() {
                         if(confirm('정말로 이 리뷰를 삭제하시겠습니까?')) {
                             $.ajax({
-                                url: `/api/reviews/${reviewId}`,
+                                url: `${contextPath}/api/reviews/${reviewId}`,
                                 method: 'DELETE',
                                 success: function() {
                                     alert('리뷰가 삭제되었습니다.');
@@ -508,12 +503,6 @@ $(function () {
         $('#modal-overlay').fadeOut();
     }
 
-
-    // 모바일 확인 함수
-    function isMobile() {
-        return window.matchMedia("(max-width: 1024px)").matches;
-    }
-
     // // Show profile edit modal
     // $('.btn-outline-primary').click(function () {
     //     $('.profile-edit-modal').removeClass('hidden');
@@ -539,7 +528,7 @@ $(function () {
         const memberId = $('#myzip').data('member');
         
         $.ajax({
-            url: '/api/characters/member/' + memberId,
+            url: contextPath + '/api/characters/member/' + memberId,
             method: 'GET',
             success: function(characters) {
                 const characterGrid = $('#characterSelectModal .character-select-grid');
@@ -633,23 +622,21 @@ $(function () {
 
     function initializeLikeState(reviewId) {
         const currentUserMemIdx = $('#memberIdx').val();
-        console.log('Initializing like state for review:', reviewId, 'user:', currentUserMemIdx);
-    
+
         if (currentUserMemIdx) {
             $.ajax({
-                url: `/api/reviews/${reviewId}/like/check`,
+                url: `${contextPath}/api/reviews/${reviewId}/like/check`,
                 method: 'GET',
                 dataType: 'json',
                 data: { memIdx: currentUserMemIdx },
                 success: function(isLiked) {
-                    console.log('Like check response:', isLiked);
                     const likeIcon = $(`.like-btn[data-review-id="${reviewId}"] i`);
                     if(isLiked) {
                         likeIcon.removeClass('far').addClass('fas');
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.log('Like check error:', {xhr, status, error});
+                    console.error('Like check error:', {xhr, status, error});
                 }
             });
         }
@@ -657,7 +644,6 @@ $(function () {
     
     $(document).on('click', '.like-btn', function(e) {
         e.preventDefault();
-        console.log('Like button clicked');
         const currentUserMemIdx = $('#memberIdx').val();
         
         if (!currentUserMemIdx) {
@@ -670,28 +656,20 @@ $(function () {
         const reviewId = $btn.data('review-id');
         const isLiked = $icon.hasClass('fas');
 
-        console.log('Review ID:', reviewId);
-        console.log('Is currently liked:', isLiked);
-    
-    
         const method = isLiked ? 'DELETE' : 'POST';
         const likeUrl = `/api/reviews/${reviewId}/like?memIdx=${currentUserMemIdx}`;
-    
-        console.log('Making request:', {method, url: likeUrl});
 
         $.ajax({
             url: likeUrl,
             method: method,
             success: function(response) {
-                console.log('Like toggle success:', response);
                 $icon.toggleClass('far fas');
                 
                 $.ajax({
-                    url: `/api/reviews/${reviewId}/like/count`,
+                    url: `${contextPath}/api/reviews/${reviewId}/like/count`,
                     method: 'GET',
                     dataType: 'json',
                     success: function(count) {
-                        console.log('New like count:', count);
                         $btn.find('.like-count').text(count);
                     }
                 });
@@ -700,16 +678,14 @@ $(function () {
     });
     
     function loadReviewDetail(reviewId) {
-        console.log('Loading review detail for ID:', reviewId);
         initializeReviewOptions(reviewId);
         $('#reviewDetailModal .review-rating').html('<i class="fas fa-star"></i>');
     
         $.ajax({
-            url: '/api/reviews/' + reviewId,
+            url: contextPath + '/api/reviews/' + reviewId,
             method: 'GET',
             dataType: 'json',
             success: function (review) {
-                console.log('Received review data:', review);
     
                 if (review.imageUrl) {
                     let imageUrls = review.imageUrl;
@@ -720,19 +696,16 @@ $(function () {
                         $('#reviewDetailModal .review-detail-header img').attr('src', imageUrls[0]);
                     }
                 } else {
-                    $('#reviewDetailModal .review-detail-header img').attr('src', '/resources/img/default-image.png');
+                    $('#reviewDetailModal .review-detail-header img').attr('src', contextPath + '/resources/img/default-image.png');
                 }
-    
-                console.log('Updating UI elements with review data');
-    
-                console.log('Setting restaurant name:', review.placeTitle);
+
                 $('#reviewDetailModal .restaurant-name')
                     .text(review.placeTitle)
                     .data('place-id', review.placeId);
     
                 const infoText = review.addr1 + ' • ' + review.cat3 + ' •  ★' + review.avgRating + '(리뷰 ' + review.reviewCount + '개)';
                 $('#reviewDetailModal .restaurant-info').text(infoText);
-                $('#reviewDetailModal .review-profile-image img').attr('src', review.profileImage || '/resources/img/default-profile.png');
+                $('#reviewDetailModal .review-profile-image img').attr('src', review.profileImage || contextPath + '/resources/img/default-profile.png');
                 $('#reviewDetailModal .reviewer-name').text(review.memberName);
     
                 $('#reviewDetailModal .review-rating i').after(' ' + review.rating);
@@ -750,7 +723,7 @@ $(function () {
                 $('#reviewDetailModal .review-like').html(likeButton);
 
                 $.ajax({
-                    url: `/api/reviews/${reviewId}/like/count`,
+                    url: `${contextPath}/api/reviews/${reviewId}/like/count`,
                     method: 'GET',
                     dataType: 'json',
                     success: function(count) {
@@ -763,14 +736,14 @@ $(function () {
                 $('#reviewDetailModal .review-profile-image, #reviewDetailModal .reviewer-name')
                     .css('cursor', 'pointer')
                     .click(function() {
-                        window.location.href = `/myzip?id=${review.memIdx}`;
+                        window.location.href = `${contextPath}/myzip?id=${review.memIdx}`;
                     });
                 
                 $('#reviewDetailModal').show();
                 $('#reviewDetailModal .review-detail-modal').show();
             },
             error: function (xhr, status, error) {
-                console.log('Ajax error details:', {
+                console.error('Ajax error details:', {
                     status: status,
                     error: error,
                     response: xhr.responseText
@@ -786,13 +759,11 @@ $(function () {
 
 
     $('#reviewDetailModal .close-button').click(function () {
-        console.log('Close button clicked');
         $('#reviewDetailModal').hide();
         $('#reviewDetailModal .review-detail-modal').hide();
     });
 
     $('#reviewDetailModal .more-options-btn').click(function (e) {
-        console.log('More options button clicked');
         e.stopPropagation();
         $('#reviewDetailModal .options-dropdown').toggleClass('show');
     });
@@ -810,5 +781,4 @@ $(function () {
     });
 
     window.loadReviewDetail = loadReviewDetail;
-    console.log('Review detail functionality initialized');
 });

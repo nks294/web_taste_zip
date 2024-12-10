@@ -43,7 +43,7 @@
             <li class="com-flex-no-shrink com-padding-list"><a href="#">개인정보처리방침</a></li>
             <li class="com-flex-no-shrink com-padding-list"><a href="#">이메일무단수집거부</a></li>
             <li class="com-flex-no-shrink com-padding-list"><a href="#">법적고지</a></li>
-            <li class="com-flex-no-shrink com-padding-list"><a href="/notice">공지사항</a></li>
+            <li class="com-flex-no-shrink com-padding-list"><a href="${pageContext.request.contextPath}/notice">공지사항</a></li>
             <li class="com-flex-no-shrink com-padding-list"><a href="#">고객센터</a></li>
         </ul>
     </div>

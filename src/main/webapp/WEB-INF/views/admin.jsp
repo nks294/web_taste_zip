@@ -7,7 +7,7 @@
 
 <%@ include file="module/core.jsp" %>
 
-<script type="text/javascript" src="/resources/js/admin.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
 
 <body>
 

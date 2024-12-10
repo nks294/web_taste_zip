@@ -10,7 +10,7 @@ $(document).ready(function() {
     async function fetchTopRankedPlaces() {
         try {
             const response = await $.ajax({
-                url: '/places/rank', // 서버 API 엔드포인트
+                url: contextPath + '/places/rank', // 서버 API 엔드포인트
                 method: 'GET',
                 dataType: 'json',
             });
@@ -20,10 +20,6 @@ $(document).ready(function() {
                 id: place.placeId
             }));
             
-    
-    console.log("Restaurants length:", restaurants.length);
-    console.log("Restaurants content:", restaurants);
-
         } catch (error) {
             console.error('Top ranked places를 가져오는 중 오류 발생:', error);
         }
@@ -57,7 +53,7 @@ $(document).ready(function() {
         function updateRankDisplay(index) {
             $("#restaurant-rotation, #mob-restaurant-rotation").html(`
                 <strong class="popular-rank">${index + 1}</strong> 
-                <a href="/map?placeId=${restaurants[index].id}" class="com-text-hover-underline">${restaurants[index].title}</a>
+                <a href="${contextPath}/map?placeId=${restaurants[index].id}" class="com-text-hover-underline">${restaurants[index].title}</a>
             `);
         }
 
@@ -72,7 +68,7 @@ $(document).ready(function() {
                 $list.append(`
                     <li>
                         <strong class="popular-rank com-font-size-4">${index + 1}</strong>
-                        <a href="/map?placeId=${restaurant.id}" class="com-text-hover-underline">${restaurant.title}</a>
+                        <a href="${contextPath}/map?placeId=${restaurant.id}" class="com-text-hover-underline">${restaurant.title}</a>
                     </li>
                 `);
             });
@@ -82,12 +78,7 @@ $(document).ready(function() {
             $('.popular-restaurant-popup').on('mouseenter', function() { $(this).addClass('open'); }).on('mouseleave', function() { $(this).removeClass('open'); });
         });
     }
-
-    // 모바일 확인 함수
-    function isMobile() {
-        return window.matchMedia("(max-width: 1024px)").matches;
-    }
-
+    
     initRestaurantRotation();
     
 
@@ -243,7 +234,7 @@ $(document).ready(function() {
             $('#error-message').text('아이디와 비밀번호를 입력해주세요.'); return;
         } else {
             $.ajax({
-                url: '/member/loginProcess.do',
+                url: contextPath + '/member/loginProcess.do',
                 type: 'POST',
                 data: {
                     memberId: email,
@@ -428,7 +419,7 @@ $(document).ready(function() {
         }
     
         $.ajax({
-            url: '/member/checkId.do',
+            url: contextPath + '/member/checkId.do',
             type: 'POST',
             data: { member_id: email },
             success: function(response) {
@@ -455,7 +446,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "post",
-            url: "/member/checkEmail.do",
+            url: contextPath + "/member/checkEmail.do",
             data: {email: email},
             success: function(data){
                 $('#resultEmail').text('인증번호가 전송되었습니다.').css('color', 'var(--zip-success)');
@@ -634,7 +625,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: '/member/joinProcess.do',
+            url: contextPath + '/member/joinProcess.do',
             type: 'POST',
             data: memberData,
             success: function (response) {

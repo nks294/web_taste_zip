@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-<script type="text/javascript" src="/resources/js/header.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/header.js"></script>
 
 <style>
         
@@ -24,7 +24,7 @@
         </div>
 
         <div class="header-center">
-            <a href="/" class="logo">
+            <a href="${pageContext.request.contextPath}/" class="logo">
                 <!-- <img src="/resources/img/logo-temp.png" alt="로고"> -->
                 <h1 class="com-font-jua com-font-normal com-font-style-normal"><span></span></h1>
             </a>
@@ -33,17 +33,17 @@
         <div class="header-right">
             <div class="header-btn-wrapper com-relative com-flex-row com-gap-20 com-font-size-6">
                 <a href="javascript:void(0)" id="change-mode"><i class="mode-icon"></i></a>
-                <a href="/map" id="goto-map"><i class="fas fa-map"></i></a>
+                <a href="${pageContext.request.contextPath}/map" id="goto-map"><i class="fas fa-map"></i></a>
                 
                 <c:choose>
                     <c:when test="${empty member}">
                         <a href="javascript:void(0)" id="do-login"><i class="fas fa-user"></i></a>
                     </c:when>
                     <c:when test="${member.memGrade == 2}">
-                        <a href="/admin"><i class="fas fa-user-shield"></i></a>
+                        <a href="${pageContext.request.contextPath}/admin"><i class="fas fa-user-shield"></i></a>
                     </c:when>
                     <c:otherwise>
-                        <a href="/myzip?id=${member.memIdx}"><i class="fas fa-user"></i></a>
+                        <a href="${pageContext.request.contextPath}/myzip?id=${member.memIdx}"><i class="fas fa-user"></i></a>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -81,7 +81,7 @@
                         <p class="com-font-jua com-font-normal com-font-style-normal com-font-size-9 com-margin-top-15 com-color-primary">로그인</p>
                     </div>
                     <div class="login-register-contents com-flex-col com-flex-justify-center com-flex-align-center com-gap-5 com-flex-1 com-scroll-y">
-                        <form action="/loginProcess.do" method="post" class="com-width-100 com-flex-col com-gap-10 com-flex-1">
+                        <form action="${pageContext.request.contextPath}/loginProcess.do" method="post" class="com-width-100 com-flex-col com-gap-10 com-flex-1">
                             
                             <div class="login-input com-flex-col com-gap-15 com-margin-bottom-20">
                                 <div class="login-input-wrapper com-flex-col com-gap-15 com-margin-bottom-20">
@@ -109,9 +109,9 @@
                     <div class="sns-login-wrapper com-width-100 com-flex-col com-flex-align-center com-gap-15 com-margin-bottom-20">
                         <span class="sns-login-title com-relative com-flex-row com-width-100 com-flex-align-center font-size-2">간편 로그인 / 회원가입</span>
                         <div class="sns-login-btn-bundle com-flex-row com-flex-justify-center com-gap-30">
-                            <a href="/social/kakao/login" class="kakao com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="/resources/img/ico/ico-kakao.svg" alt="카카오 로고"></a>
-                            <a href="/social/naver/login" class="naver com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="/resources/img/ico/ico-naver.svg" alt="네이버 로고"></a>
-                            <a href="/social/google/login" class="google com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="/resources/img/ico/ico-google.svg" alt="구글 로고"></a>
+                            <a href="${pageContext.request.contextPath}/social/kakao/login" class="kakao com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-kakao.svg" alt="카카오 로고"></a>
+                            <a href="${pageContext.request.contextPath}/social/naver/login" class="naver com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-naver.svg" alt="네이버 로고"></a>
+                            <a href="${pageContext.request.contextPath}/social/google/login" class="google com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-google.svg" alt="구글 로고"></a>
                         </div>
                     </div>
                 </div>

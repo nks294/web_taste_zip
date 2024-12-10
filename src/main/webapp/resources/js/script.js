@@ -1,6 +1,14 @@
 $(function () {
 
     // --------------------------------
+    // 전역변수
+    // --------------------------------
+
+    // 모바일 감지 함수
+    window.isMobile = function() { return window.matchMedia("(max-width: 1024px)").matches; };
+    window.isPhone = function() { return window.matchMedia("(max-width: 480px)").matches; }
+
+    // --------------------------------
     // 1자형 리스트 스크롤 버튼 스크립트
     // --------------------------------
     $('.scroll-left').click(function() { doScroll($(this), 'left'); });

@@ -14,7 +14,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
-        url: '/places/getAllThemes',
+        url: contextPath + '/places/getAllThemes',
         method: 'GET',
         dataType: 'json',
         success: function(themes) {
@@ -91,7 +91,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
-        url: '/places/search',
+        url: contextPath + '/places/search',
         method: 'GET',
         data: { keyword: title },
         success: function(results) {
@@ -122,7 +122,7 @@ $(document).on('click', '.result-item', function() {
     const placeId = $(this).data('place-id');
     
     $.ajax({
-        url: `/places/api/getPlace/${placeId}`,
+        url: `${contextPath}/places/api/getPlace/${placeId}`,
         method: 'GET',
         dataType: 'json',
         success: function(place) {
@@ -203,7 +203,7 @@ $('#placeSubmitForm').on('submit', function(e) {
         };
 
         $.ajax({
-            url: '/places/update',
+            url: contextPath + '/places/update',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(placeData),
@@ -235,7 +235,7 @@ $('#placeSubmitForm').on('submit', function(e) {
         }));
 
         $.ajax({
-            url: '/places/submit',
+            url: contextPath + '/places/submit',
             type: 'POST',
             data: formData,
             processData: false,

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <%@ include file="module/core.jsp" %>
-<script type="text/javascript" src="/resources/js/myzip.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/myzip.js"></script>
 
 <body>
     <%@ include file="module/header.jsp" %>
@@ -19,7 +19,7 @@
             <div class="profile-wrapper com-flex-row com-padding-6 com-gap-50">
                 <div class="profile-container">
                     <div class="profile-circle com-round-circle com-border-thin com-overflow-hidden com-margin-bottom-20">
-                        <img src="${targetMem.profileImage != null ? targetMem.profileImage : '/resources/img/default-profile.png'}" alt="Profile Picture" class="com-img-fit com-padding-4">
+                        <img src="${pageContext.request.contextPath}/${targetMem.profileImage != null ? targetMem.profileImage : '/resources/img/default-profile.png'}" alt="Profile Picture" class="com-img-fit com-padding-4">
                     </div>
                     <div class="profile-btn-wrapper com-flex-col com-gap-10">
                         <c:if test="${isOwner}">
@@ -120,14 +120,14 @@
                     <h2>프로필 편집</h2>
                 </div>
 
-                <form method="post" action="member/updateProcess.do">
+                <form method="post" action="${pageContext.request.contextPath}/member/updateProcess.do">
                     <input type="hidden" name="memIdx" value="${member.memIdx}">
                     <input type="hidden" name="memberPw" value="${member.memberPw}">
                     <input type="hidden" name="profileImage" id="profileImageInput" value="${member.profileImage}">
 
                     <div class="profile-image-container">
                         <div class="profile-image-circle">
-                            <img src="${member.profileImage != null ? member.profileImage : '/resources/img/default-profile.png'}" alt="Profile Picture">
+                            <img src="${pageContext.request.contextPath}/${member.profileImage != null ? member.profileImage : '/resources/img/default-profile.png'}" alt="Profile Picture">
                             <div class="image-upload-overlay">
                                 <i class="fas fa-edit"></i>
                             </div>
@@ -180,7 +180,7 @@
                     <h2>비밀번호 변경</h2>
                 </div>
 
-                <form id="passwordChangeForm" method="post" action="member/updatePassword.do">
+                <form id="passwordChangeForm" method="post" action="${pageContext.request.contextPath}/member/updatePassword.do">
                     <input type="hidden" name="memIdx" value="${member.memIdx}">
                     <input type="hidden" name="memberId" value="${member.memberId}">
 
@@ -209,7 +209,7 @@
 
     <div id="gachaModal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1200; display: flex; justify-content: center; align-items: center;">
         <div class="gacha-content" style="width: 400px; height: 600px;">
-            <iframe src="/randomCharacter" style="width: 100%; height: 100%; border: none;"></iframe>
+            <iframe src="${pageContext.request.contextPath}/randomCharacter" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
     </div>
 

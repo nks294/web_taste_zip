@@ -1,9 +1,5 @@
 $(document).ready(function () {
 
-    // 모바일 감지 함수
-    function isMobile() { return window.matchMedia("(max-width: 1024px)").matches; }
-    function isPhone() { return window.matchMedia("(max-width: 480px)").matches; }
-
     // 타이틀 시간별 아침,점심,저녁 및 랜덤 카테고리 출력
     const hour = new Date().getHours();
     const time = hour < 12 ? '아침' : hour < 18 ? '점심' : '저녁';
@@ -18,7 +14,7 @@ $(document).ready(function () {
     async function fetchReview(targetId, count = 20) {
         try {
             const response = await $.ajax({
-                url: '/api/reviews/all',
+                url: contextPath + '/api/reviews/all',
                 method: 'GET',
                 data: { page: 0, size: count }
             });
@@ -48,7 +44,7 @@ $(document).ready(function () {
 
     function fetchLikes(reviewId) {
         return $.ajax({
-            url: `/api/reviews/${reviewId}/like/count`,
+            url: `${contextPath}/api/reviews/${reviewId}/like/count`,
             method: 'GET',
             dataType: 'json'
         }).then((likeCount) => likeCount)
@@ -65,16 +61,16 @@ $(document).ready(function () {
         items.forEach((item) => {
             const listItem = `
                 <li class="com-list-hover-animate com-pointer com-round-15 com-overflow-hidden com-flex-no-shrink">
-                    <a href="/map?placeId=${item.id}">
+                    <a href="${contextPath}/map?placeId=${item.id}">
                         <div class="list-thumb-img com-flex-no-shrink com-width-100 com-overflow-hidden" style="height: 200px">
-                            <img src="${item.img}" alt="${item.title || '이미지'}" class="com-img-fit">
+                            <img src="${contextPath}/${item.img}" alt="${item.title || '이미지'}" class="com-img-fit">
                         </div>
                         <div class="list-content-wrapper com-padding-3 com-flex-col com-gap-15">
                             <strong>${item.title}</strong>
                             <div class="review-top-wrapper rv-wrapper com-flex-row com-flex-justify-spacebetween com-font-size-2 com-gap-10">
-                                <a href="/myzip?id=${item.memIdx}" class="com-flex-no-shrink com-cursor-pointer"><img src="${item.profileImg}" alt="${item.name}의 프로필 사진" class="profile-image com-round-circle" style="height:50px; width: 50px;"></a>
+                                <a href="${contextPath}/myzip?id=${item.memIdx}" class="com-flex-no-shrink com-cursor-pointer"><img src="${contextPath}/${item.profileImg}" alt="${item.name}의 프로필 사진" class="profile-image com-round-circle" style="height:50px; width: 50px;"></a>
                                 <div class="reiview-info-pane com-flex-col com-gap-5 com-no-shrink com-width-100">
-                                    <a href="/myzip?id=${item.memIdx}" class="com-flex-no-shrink com-cursor-pointer"><strong class="rv-name">${item.name}</strong></a>
+                                    <a href="${contextPath}/myzip?id=${item.memIdx}" class="com-flex-no-shrink com-cursor-pointer"><strong class="rv-name">${item.name}</strong></a>
                                     <div class="rv-desc com-font-size-2 com-height-100">${item.desc}</div>
                                     <div class="review-bottom-wrapper rv-wrapper com-flex-row com-flex-justify-spacebetween com-font-size-2">
                                         <div class="rv-rate"><i class="fas fa-star"></i> ${item.rate}</div>
@@ -100,7 +96,7 @@ $(document).ready(function () {
         const size = count;
     
         $.ajax({
-            url: '/places/searchOrCategory',
+            url: contextPath + '/places/searchOrCategory',
             method: 'GET',
             data: {
                 category: categoryName || 'all',
@@ -144,7 +140,7 @@ $(document).ready(function () {
         items.forEach((item) => {
             const listItem = `
                 <li class="com-list-hover-animate com-pointer com-round-15 com-overflow-hidden com-flex-no-shrink">
-                    <a href="/map?placeId=${item.id}">
+                    <a href="${contextPath}/map?placeId=${item.id}">
                         <div class="list-thumb-img com-flex-no-shrink com-width-100 com-overflow-hidden" style="height: 230px">
                             <img src="${item.img}" alt="${item.title || '이미지'}" class="com-img-fit">
                         </div>

@@ -28,7 +28,7 @@
                             <h2 class="com-font-normal">이벤트.zip</h2>
                         </c:when>
                     </c:choose>
-                    <button onclick="location.href='/notice';" id="back_to_list" class="com-btn-primary com-padding-primary com-round-10">목록보기</button>
+                    <button onclick="location.href='${pageContext.request.contextPath}/notice';" id="back_to_list" class="com-btn-primary com-padding-primary com-round-10">목록보기</button>
                 </div>
                     <div class="board-info com-margin-bottom-20 com-flex-row com-flex-justify-spacebetween com-font-size-2 com-padding-2 com-gap-30">
                         <div class="board-title com-font-normal">
@@ -56,17 +56,17 @@
                 <div class="board-button-bundle com-margin-bottom-20 com-flex-row com-flex-justify-center com-flex-align-center com-gap-20">
                     <c:choose>
                         <c:when test="${memIdx == notice.member.memIdx}">
-                            <form action="/notice/write" method="get">
+                            <form action="${pageContext.request.contextPath}/notice/write" method="get">
                                 <input type="hidden" name="id" value="${notice.boardId}">
                                 <input type="submit" value="수정하기" id="edit_button" class="com-padding-primary com-border-clear com-btn-primary com-round-5">
                             </form>
-                            <form action="/notice/delete" method="post">
+                            <form action="${pageContext.request.contextPath}/notice/delete" method="post">
                                 <input type="hidden" name="id" value="${notice.boardId}">
                                 <input type="submit" value="삭제하기" id="delete_button" class="com-padding-primary com-border-clear com-btn-primary com-round-5">
                             </form>
                         </c:when>
                         <c:when test="${grade == 2}">
-                            <form action="/notice/delete" method="post">
+                            <form action="${pageContext.request.contextPath}/notice/delete" method="post">
                                 <input type="hidden" name="id" value="${notice.boardId}">
                                 <input type="submit" value="삭제하기" id="delete_button" class="com-padding-primary com-border-clear com-btn-primary com-round-5">
                             </form>

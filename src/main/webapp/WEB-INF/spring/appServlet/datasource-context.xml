@@ -38,7 +38,7 @@
 		<property name="jpaProperties">
             <props>
 			        <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
-        <prop key="hibernate.show_sql">true</prop>
+        <!-- <prop key="hibernate.show_sql">true</prop> -->
         <prop key="hibernate.format_sql">true</prop>
             	<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> 기존 테이블을 삭제하고 새로운 테이블 생성(서버 운영 중에는 사용하면 안됨) -->
                 <prop key="hibernate.hbm2ddl.auto">update</prop> <!-- 기존 테이블은 유지하고 없는 테이블만 생성함 -->

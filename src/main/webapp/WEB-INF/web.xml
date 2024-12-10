@@ -30,8 +30,6 @@
 			<param-value>true</param-value>
 		</init-param>
 
-		
-		
 		<multipart-config>
 			<max-file-size>5242880</max-file-size><!-- 업로드할 한 개 파일의 최대 크기: 5MB(1024*1024*5) -->
 			<max-request-size>20971520</max-request-size><!-- 한번에 업로드할 수 있는 파일들의 최대 크기: 20MB(1024*1024*20) -->
@@ -44,7 +42,7 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+    
   <!-- 한글 처리 필터 -->
   <filter>
   	<filter-name>HangulEncoding</filter-name>
@@ -66,8 +64,13 @@
   
   <!-- 자주 발생하는 에러에 대한 처리 -->
   <error-page>
+  	<error-code>404</error-code>
+  	<location>/error</location>
+  </error-page>
+
+  <error-page>
   	<error-code>500</error-code>
-  	<location>/error/error500.do</location>
+  	<location>/error</location>
   </error-page>
 
 </web-app>

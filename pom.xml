@@ -279,7 +279,7 @@
 	</dependencies>
 
     <build>
-    <finalName>ROOT</finalName>
+    <finalName>tastezip</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>

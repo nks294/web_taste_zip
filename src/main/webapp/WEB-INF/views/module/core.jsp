@@ -14,7 +14,7 @@
 
     <!-- Kakao SDK -->
     <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=7d0b93d4daafc27bea0f6f9037b0e730&libraries=services"></script>
-    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"></script>
+    <script type="text/javascript" src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"></script>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- notosans -->

@@ -29,7 +29,7 @@ $(document).ready(function() {
     let currentRegionPage = 1;
     let isDragging = false, startX;
     
-    const mapContainer = document.getElementById('map-small');
+    const mapContainer = document.getElementById('map-small'); 
     const mapOptions = { center: new kakao.maps.LatLng(37.5665, 126.9780), level: 9 };
     const map = new kakao.maps.Map(mapContainer, mapOptions);
     
@@ -43,7 +43,7 @@ $(document).ready(function() {
                         .map(
                             (region) =>
                                 `<li data-region="${region.data}" data-lat="${region.lat}" data-lng="${region.lng}" class="com-border-primary com-text-center com-pointer com-overflow-hidden com-bg com-shadow-back com-relative com-flex-row com-flex-justify-center com-flex-align-center com-round-30">
-                                    <img src="/resources/img/ico/region/${region.img}.png" class="com-img-fit">
+                                    <img src="https://via.placeholder.com/96" class="com-img-fit">
                                     <span class="region-title com-color-white com-bg-primary-tr com-font-size-3 com-width-100">${region.name}</span>
                                 </li>`
                         )
@@ -66,7 +66,7 @@ $(document).ready(function() {
                                     .map(
                                         (region) =>
                                             `<li class="com-border-primary com-text-center com-pointer com-overflow-hidden com-bg com-shadow-back com-relative com-flex-row com-flex-justify-center com-flex-align-center com-round-30" data-region="${region.data}" data-lat="${region.lat}" data-lng="${region.lng}">
-                                                <img src="/resources/img/ico/region/${region.img}.png" class="com-img-fit">
+                                                <img src="https://via.placeholder.com/96" class="com-img-fit">
                                                 <span class="region-title com-color-white com-bg-primary-tr com-font-size-3 com-width-100">${region.name}</span>
                                             </li>`
                                     )

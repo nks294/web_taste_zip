@@ -3,10 +3,6 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/header.js"></script>
 
-<style>
-        
-</style>
-
 <header class="com-width-100 com-bg-header com-sticky-top com-z-index-top">
     <div class="title-wrapper com-white-to-primary com-color com-flex-row com-flex-align-center com-flex-justify-spacebetween com-relative com-max-width-1280 com-margin-center">
 
@@ -63,11 +59,11 @@
         <!-- 비밀번호 실시간 유효성 검사 툴팁 -->
         <div class="password-tooltip hidden" id="password-tooltip">
             <ul>
-                <li id="length-check" class="font-size-1 com-margin-bottom-small invalid">8자 이상 입력</li>
-                <li id="uppercase-check" class="font-size-1 com-margin-bottom-small invalid">대문자 포함</li>
-                <li id="lowercase-check" class="font-size-1 com-margin-bottom-small invalid">소문자 포함</li>
-                <li id="number-check" class="font-size-1 com-margin-bottom-small invalid">숫자 포함</li>
-                <li id="special-check" class="font-size-1 com-margin-bottom-small invalid">특수문자 포함</li>
+                <li id="length-check" class="com-font-size-1 com-margin-bottom-small invalid">8자 이상 입력</li>
+                <li id="uppercase-check" class="com-font-size-1 com-margin-bottom-small invalid">대문자 포함</li>
+                <li id="lowercase-check" class="com-font-size-1 com-margin-bottom-small invalid">소문자 포함</li>
+                <li id="number-check" class="com-font-size-1 com-margin-bottom-small invalid">숫자 포함</li>
+                <li id="special-check" class="com-font-size-1 com-margin-bottom-small invalid">특수문자 포함</li>
             </ul>
         </div>
 
@@ -109,9 +105,9 @@
                     <div class="sns-login-wrapper com-width-100 com-flex-col com-flex-align-center com-gap-15 com-margin-bottom-20">
                         <span class="sns-login-title com-relative com-flex-row com-width-100 com-flex-align-center font-size-2">간편 로그인 / 회원가입</span>
                         <div class="sns-login-btn-bundle com-flex-row com-flex-justify-center com-gap-30">
-                            <a href="${pageContext.request.contextPath}/social/kakao/login" class="kakao com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-kakao.svg" alt="카카오 로고"></a>
-                            <a href="${pageContext.request.contextPath}/social/naver/login" class="naver com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-naver.svg" alt="네이버 로고"></a>
-                            <a href="${pageContext.request.contextPath}/social/google/login" class="google com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-google.svg" alt="구글 로고"></a>
+                            <a href="javascript:void(0)" class="kakao com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center" onclick="alert('SNS 간편 로그인은 미리보기에서는 비활성화 되어있습니다.')"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-kakao.svg" alt="카카오 로고"></a>
+                            <a href="javascript:void(0)" class="naver com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center" onclick="alert('SNS 간편 로그인은 미리보기에서는 비활성화 되어있습니다.')"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-naver.svg" alt="네이버 로고"></a>
+                            <a href="javascript:void(0)" class="google com-round-circle com-flex-row com-flex-align-center com-border-thin com-flex-justify-center" onclick="alert('SNS 간편 로그인은 미리보기에서는 비활성화 되어있습니다.')"><img src="${pageContext.request.contextPath}/resources/img/ico/ico-google.svg" alt="구글 로고"></a>
                         </div>
                     </div>
                 </div>
@@ -130,8 +126,12 @@
                         <form action="/member/joinProcess.do" method="post" class="com-width-100 com-flex-col com-gap-10 com-flex-1 com-flex-justify-center">
                             <div id="register-page-1" class="register-step login-input com-flex-col com-flex-justify-center com-flex-1 com-gap-15 com-margin-bottom-20">
                                 <div class="welcome-wrapper com-flex-col com-text-center com-gap-20">
-                                    <h1>안녕하세요!</p>
-                                    <h3>맛.zip 사이트 가입을 환영합니다.</h3>
+                                    <h2>안녕하세요!</h2>
+                                    <h5>
+                                        맛.zip 사이트 가입을 환영합니다.<br>
+                                        <h7>(미리보기에서는 회원가입은 비활성화 되어있습니다.)</h7>
+                                    </h5>
+                                    
                                     <p class="welcome-desc">원활한 사이트 이용을 위해<br>아래 약관에 동의해주세요.</p>
                                     <div class="register-agreement-wrapper com-width-100 com-flex-row com-flex-justify-center com-flex-align-center com-gap-10 com-margin-top-20 com-font-size-4 com-font-bold">
                                         <input type="checkbox" name="register_agreement" id="register_agreement">
@@ -205,14 +205,14 @@
                             <!-- 스텝 2, 계정 정보 입력 -->
                             <div id="register-page-2" class="register-step login-input com-flex-col com-gap-15 com-margin-bottom-20 hidden">
                                 <div class="email-input-wrapper com-gap-10 com-flex-row">
-                                    <input type="text" name="memberId" id="reg_member_id" placeholder="아이디(이메일)" class="input-text com-width-100 com-padding-primary com-margin-bottom-10   ">
+                                    <input type="text" name="memberId" id="reg_member_id" placeholder="아이디(이메일)" class="input-text com-width-100 com-padding-primary com-margin-bottom-10">
                                     <button type="button" id="checkId" class="get-confirm com-round-10 com-btn-primary com-margin-bottom-10 com-flex-no-shrink">중복확인</button>
                                 </div>
                                 <p id="resultMsg" class="error-message"></p>
                             
-                                <div id="auth_num_section" class="email-input-wrapper" style="display: none;">
-                                    <input type="text" id="auth_num_input" class="input-text com-width-100 com-padding-primary com-margin-bottom-10   " placeholder="인증번호 6자리 입력" maxlength="6">
-                                    <button type="button" id="confirm_email_btn" class="get-confirm com-round com-btn-primary">확인</button>
+                                <div id="auth_num_section" class="email-input-wrapper com-gap-10 com-flex-row" style="display: none;">
+                                    <input type="text" id="auth_num_input" class="input-text com-width-100 com-padding-primary com-margin-bottom-10" placeholder="인증번호 6자리(294294) 입력" maxlength="6">
+                                    <button type="button" id="confirm_email_btn" class="get-confirm com-round-10 com-btn-primary com-margin-bottom-10 com-flex-no-shrink">확인</button>
                                 </div>
         
                                 <input type="hidden" name="result_confirm" id="result_confirm">

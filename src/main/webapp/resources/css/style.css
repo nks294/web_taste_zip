@@ -445,7 +445,7 @@ label[for="register_agreement"] { cursor: pointer;}
 .password-tooltip {
     position: absolute;
     left: -160px;
-    top: 51%;
+    top: 290px;
     width: 135px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;

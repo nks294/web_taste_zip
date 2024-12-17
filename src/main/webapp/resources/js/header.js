@@ -441,22 +441,23 @@ $(document).ready(function() {
 
     // 인증번호 전송
     function sendCode() {
-        const email = $('#reg_member_id').val();
+        // const email = $('#reg_member_id').val();
         $('#auth_num_section').show();
+        code = '294294';
 
-        $.ajax({
-            type: "post",
-            url: contextPath + "/member/checkEmail.do",
-            data: {email: email},
-            success: function(data){
-                $('#resultEmail').text('인증번호가 전송되었습니다.').css('color', 'var(--zip-success)');
-                $('#auth_num_input').prop('disabled', false);
-                code = data.trim();
-            },
-            error: function(e){
-                $('#resultEmail').text('인증번호 전송에 실패했습니다.').css('color', 'var(--zip-error)');
-            }
-        });
+        // $.ajax({
+        //     type: "post",
+        //     url: contextPath + "/member/checkEmail.do",
+        //     data: {email: email},
+        //     success: function(data){
+        //         $('#resultEmail').text('인증번호가 전송되었습니다.').css('color', 'var(--zip-success)');
+        //         $('#auth_num_input').prop('disabled', false);
+        //         code = data.trim();
+        //     },
+        //     error: function(e){
+        //         $('#resultEmail').text('인증번호 전송에 실패했습니다.').css('color', 'var(--zip-error)');
+        //     }
+        // });
         $('#confirm_email_btn').prop('disabled', false);
     }
 
@@ -624,25 +625,31 @@ $(document).ready(function() {
             phone: `${$('#member_phone_middle').val()}-${$('#member_phone_back').val()}`
         };
 
-        $.ajax({
-            url: contextPath + '/member/joinProcess.do',
-            type: 'POST',
-            data: memberData,
-            success: function (response) {
-                if (response.success) {
-                    Popup.onClose(() => {
-                        transition();
-                        resetRegister()
-                    });
-                    Popup.open('가입이 완료되었습니다. 🎉<br>이제 로그인하고 맛.zip과 함께<br>즐거운 맛집 탐색을 시작해볼까요?');
-                } else {
-                    alert(response.msg || '회원가입에 실패했습니다. 다시 시도해주세요.');
-                }
-            },
-            error: function () {
-                alert('서버와 통신 중 문제가 발생했습니다.');
-            }
+        Popup.onClose(() => {
+            transition();
+            resetRegister()
         });
+        Popup.open('가입 과정을 모두 끝냈어요. 🎉<br>ID: member1@taste.zip PW: 1234<br>로 테스트해보실 수 있어요.');
+
+        // $.ajax({
+        //     url: contextPath + '/member/joinProcess.do',
+        //     type: 'POST',
+        //     data: memberData,
+        //     success: function (response) {
+        //         if (response.success) {
+        //             Popup.onClose(() => {
+        //                 transition();
+        //                 resetRegister()
+        //             });
+        //             Popup.open('가입이 완료되었습니다. 🎉<br>이제 로그인하고 맛.zip과 함께<br>즐거운 맛집 탐색을 시작해볼까요?');
+        //         } else {
+        //             alert(response.msg || '회원가입에 실패했습니다. 다시 시도해주세요.');
+        //         }
+        //     },
+        //     error: function () {
+        //         alert('서버와 통신 중 문제가 발생했습니다.');
+        //     }
+        // });
     });
 
     // 회원가입 화면 초기화

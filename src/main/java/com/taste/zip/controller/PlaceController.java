@@ -91,6 +91,7 @@ public class PlaceController {
         return ResponseEntity.ok(places);
     }
 
+    @SuppressWarnings("unlikely-arg-type")
     @GetMapping("/insertPlaces.do")
     @ResponseBody
     public String insertPlaces() {

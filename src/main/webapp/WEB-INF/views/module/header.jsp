@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/header.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/header.js?v=<%=System.currentTimeMillis()%>"></script>
 
 <header class="com-width-100 com-bg-header com-sticky-top com-z-index-top">
     <div class="title-wrapper com-white-to-primary com-color com-flex-row com-flex-align-center com-flex-justify-spacebetween com-relative com-max-width-1280 com-margin-center">
@@ -29,10 +29,11 @@
         <div class="header-right">
             <div class="header-btn-wrapper com-relative com-flex-row com-gap-20 com-font-size-6">
                 <a href="javascript:void(0)" id="change-mode"><i class="mode-icon"></i></a>
+                <a href="javascript:void(0)" id="open-test-gacha"><i class="fas fa-gift"></i></a>  
                 <a href="${pageContext.request.contextPath}/map" id="goto-map"><i class="fas fa-map"></i></a>
                 
                 <c:choose>
-                    <c:when test="${empty member}">
+                    <c:when test="${empty member}">  
                         <a href="javascript:void(0)" id="do-login"><i class="fas fa-user"></i></a>
                     </c:when>
                     <c:when test="${member.memGrade == 2}">
@@ -81,8 +82,8 @@
                             
                             <div class="login-input com-flex-col com-gap-15 com-margin-bottom-20">
                                 <div class="login-input-wrapper com-flex-col com-gap-15 com-margin-bottom-20">
-                                    <input type="email" name="memberId" placeholder="이메일" class="input-text com-width-100 com-padding-primary com-margin-bottom-10">
-                                    <input type="password" name="memberPw" placeholder="비밀번호" class="input-text com-width-100 com-padding-primary com-margin-bottom-10">
+                                    <input type="email" name="memberId" placeholder="이메일" class="input-text com-width-100 com-padding-primary com-margin-bottom-10" autocomplete="email">
+                                    <input type="password" name="memberPw" placeholder="비밀번호" class="input-text com-width-100 com-padding-primary com-margin-bottom-10" autocomplete="current-password">
                                     <p id="error-message" class="error-message"></p>
                                 </div>
                                 <div class="login-input-footer com-flex-row com-flex-justify-spacebetween com-font-size-2 com-flex-align-center com-width-100">
@@ -205,23 +206,23 @@
                             <!-- 스텝 2, 계정 정보 입력 -->
                             <div id="register-page-2" class="register-step login-input com-flex-col com-gap-15 com-margin-bottom-20 hidden">
                                 <div class="email-input-wrapper com-gap-10 com-flex-row">
-                                    <input type="text" name="memberId" id="reg_member_id" placeholder="아이디(이메일)" class="input-text com-width-100 com-padding-primary com-margin-bottom-10">
+                                    <input type="email" name="memberId" id="reg_member_id" placeholder="아이디(이메일)" class="input-text com-width-100 com-padding-primary com-margin-bottom-10" autocomplete="email">
                                     <button type="button" id="checkId" class="get-confirm com-round-10 com-btn-primary com-margin-bottom-10 com-flex-no-shrink">중복확인</button>
                                 </div>
                                 <p id="resultMsg" class="error-message"></p>
                             
                                 <div id="auth_num_section" class="email-input-wrapper com-gap-10 com-flex-row" style="display: none;">
-                                    <input type="text" id="auth_num_input" class="input-text com-width-100 com-padding-primary com-margin-bottom-10" placeholder="인증번호 6자리(294294) 입력" maxlength="6">
+                                    <input type="number" id="auth_num_input" class="input-text com-width-100 com-padding-primary com-margin-bottom-10" placeholder="인증번호 6자리 입력" maxlength="6">
                                     <button type="button" id="confirm_email_btn" class="get-confirm com-round-10 com-btn-primary com-margin-bottom-10 com-flex-no-shrink">확인</button>
                                 </div>
         
                                 <input type="hidden" name="result_confirm" id="result_confirm">
                                 <p id="resultEmail" class="error-message"></p>
         
-                                <input type="password" name="memberPw" id="reg_member_pw" class="input-text com-width-100 com-padding-primary com-margin-bottom-10   " placeholder="비밀번호">
+                                <input type="password" name="memberPw" id="reg_member_pw" class="input-text com-width-100 com-padding-primary com-margin-bottom-10   " placeholder="비밀번호" autocomplete="new-password">
                                 <p id="password-error" class="error-message"></p>
                             
-                                <input type="password" name="auth_num_pw" id="confirm_password" class="input-text com-width-100 com-padding-primary com-margin-bottom-10   " placeholder="비밀번호 확인">
+                                <input type="password" name="auth_num_pw" id="confirm_password" class="input-text com-width-100 com-padding-primary com-margin-bottom-10   " placeholder="비밀번호 확인" autocomplete="new-password">
                                 <p id="confirmPassword-error" class="error-message"></p>
         
                                 <div class="login-register-button-wrapper">
@@ -268,4 +269,8 @@
         </div>
     </div>
 
+    <div id="gacha-modal-overlay" class="gacha-modal-overlay com-flex-row com-flex-justify-center com-flex-align-center hidden">
+        <%@ include file="./gacha.jsp" %>
+    </div>
+    
 </header>

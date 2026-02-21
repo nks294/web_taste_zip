@@ -140,5 +140,6 @@ $RECYCLE.BIN/
 
 .vscode
 src/main/resources/application.properties
+src/main/webapp/resources/.test
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,maven,java

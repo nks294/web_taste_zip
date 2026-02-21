@@ -1,38 +1,42 @@
-
 // ---------------------------------------------------
 // 지역별 추천 섹션 작은 지도 기능 스크립트 mapSmall.js
 // ---------------------------------------------------
 
-$(document).ready(function() {
+$(document).ready(function () {
     const regions = [
-        { name: "서울", data: "서울", lat: 37.5665, lng: 126.9780, img: "001" },
-        { name: "인천", data: "인천", lat: 37.4563, lng: 126.7052, img: "002" },
-        { name: "대전", data: "대전", lat: 36.3504, lng: 127.3845, img: "003" },
-        { name: "대구", data: "대구", lat: 35.8722, lng: 128.6018, img: "004" },
-        { name: "광주", data: "광주", lat: 35.1595, lng: 126.8526, img: "005" },
-        { name: "부산", data: "부산", lat: 35.1796, lng: 129.0756, img: "006" },
-        { name: "울산", data: "울산", lat: 35.5384, lng: 129.3114, img: "007" },
-        { name: "경기", data: "경기도", lat: 37.4138, lng: 127.5183, img: "008" },
-        { name: "강원", data: "강원", lat: 37.8228, lng: 128.1555, img: "009" },
-        { name: "충북", data: "충청북도", lat: 36.6357, lng: 127.4917, img: "010" },
-        { name: "충남", data: "충청남도", lat: 36.5184, lng: 126.8000, img: "011" },
-        { name: "경북", data: "경상북도", lat: 36.5760, lng: 128.5056, img: "012" },
-        { name: "경남", data: "경상남도", lat: 35.2377, lng: 128.6923, img: "013" },
-        { name: "전북", data: "전북", lat: 35.7175, lng: 127.1530, img: "014" },
-        { name: "전남", data: "전라남도", lat: 34.8679, lng: 126.9910, img: "015" },
-        { name: "제주", data: "제주", lat: 33.4996, lng: 126.5312, img: "016" }
-    ];
-    
+        { name: "서울", data: "서울", lat: 37.5665, lng: 126.9780, img: "seoul" },
+        { name: "인천", data: "인천", lat: 37.4563, lng: 126.7052, img: "incheon" },
+        { name: "대전", data: "대전", lat: 36.3504, lng: 127.3845, img: "daejeon" },
+        { name: "대구", data: "대구", lat: 35.8722, lng: 128.6018, img: "daegu" },
+        { name: "광주", data: "광주", lat: 35.1595, lng: 126.8526, img: "gwangju" },
+        { name: "부산", data: "부산", lat: 35.1796, lng: 129.0756, img: "busan" },
+        { name: "울산", data: "울산", lat: 35.5384, lng: 129.3114, img: "ulsan" },
+        { name: "경기", data: "경기도", lat: 37.4138, lng: 127.5183, img: "gyeonggi" },
+        { name: "강원", data: "강원", lat: 37.8228, lng: 128.1555, img: "gangwon" },
+        { name: "충북", data: "충청북도", lat: 36.6357, lng: 127.4917, img: "chungbuk" },
+        { name: "충남", data: "충청남도", lat: 36.5184, lng: 126.8000, img: "chungnam" },
+        { name: "경북", data: "경상북도", lat: 36.5760, lng: 128.5056, img: "gyeongbuk" },
+        { name: "경남", data: "경상남도", lat: 35.2377, lng: 128.6923, img: "gyeongnam" },
+        { name: "전북", data: "전북", lat: 35.7175, lng: 127.1530, img: "jeonbuk" },
+        { name: "전남", data: "전라남도", lat: 34.8679, lng: 126.9910, img: "jeonnam" },
+        { name: "제주", data: "제주", lat: 33.4996, lng: 126.5312, img: "jeju" }
+    ]
+
     const regionsPerPage = 8;
     const totalPages = Math.ceil(regions.length / regionsPerPage);
     const regionListWrapper = document.querySelector('.region-list-wrapper');
     let currentRegionPage = 1;
     let isDragging = false, startX;
-    
-    const mapContainer = document.getElementById('map-small'); 
-    const mapOptions = { center: new kakao.maps.LatLng(37.5665, 126.9780), level: 9 };
-    const map = new kakao.maps.Map(mapContainer, mapOptions);
-    
+    let map;
+
+    kakao.maps.load(function () {
+        const mapContainer = document.getElementById('map-small');
+        const mapOptions = { center: new kakao.maps.LatLng(37.5665, 126.9780), level: 9 };
+        map = new kakao.maps.Map(mapContainer, mapOptions);
+
+        init();
+    });
+
     // 지역목록 렌더링 함수
     function renderRegions() {
         regionListWrapper.innerHTML = '';
@@ -40,14 +44,14 @@ $(document).ready(function() {
             const regionListHTML = `
                 <ul class="region-list com-width-100 com-height-100 com-gap-25">
                     ${regions
-                        .map(
-                            (region) =>
-                                `<li data-region="${region.data}" data-lat="${region.lat}" data-lng="${region.lng}" class="com-border-primary com-text-center com-pointer com-overflow-hidden com-bg com-shadow-back com-relative com-flex-row com-flex-justify-center com-flex-align-center com-round-30">
-                                    <img src="/tastezip/resources/img/ico/region/${region.img}" class="com-img-fit">
+                    .map(
+                        (region) =>
+                            `<li data-region="${region.data}" data-lat="${region.lat}" data-lng="${region.lng}" class="com-border-primary com-text-center com-pointer com-overflow-hidden com-bg com-shadow-back com-relative com-flex-row com-flex-justify-center com-flex-align-center com-round-30">
+                                    <img src="/tastezip/resources/img/ico/region/${region.img}.png" class="com-img-fit">
                                     <span class="region-title com-color-white com-bg-primary-tr com-font-size-3 com-width-100">${region.name}</span>
                                 </li>`
-                        )
-                        .join("")}
+                    )
+                    .join("")}
                 </ul>
             `;
             regionListWrapper.innerHTML = regionListHTML;
@@ -56,36 +60,36 @@ $(document).ready(function() {
             const regionListHTML = `
                 <div class="region-slider com-flex-row">
                     ${Array.from({ length: totalPages }).map((_, i) => {
-                        const start = i * regionsPerPage;
-                        const end = start + regionsPerPage;
-                        const pageRegions = regions.slice(start, end);
-                    
-                        return `
+                const start = i * regionsPerPage;
+                const end = start + regionsPerPage;
+                const pageRegions = regions.slice(start, end);
+
+                return `
                             <ul class="region-list com-width-100 com-height-100 com-gap-25 page page-${i + 1}" style="left: ${i * 100}%; transition: transform 0.5s ease;">
                                 ${pageRegions
-                                    .map(
-                                        (region) =>
-                                            `<li class="com-border-primary com-text-center com-pointer com-overflow-hidden com-bg com-shadow-back com-relative com-flex-row com-flex-justify-center com-flex-align-center com-round-30" data-region="${region.data}" data-lat="${region.lat}" data-lng="${region.lng}">
-                                                <img src="/tastezip/resources/img/ico/region/${region.img}" class="com-img-fit">
+                        .map(
+                            (region) =>
+                                `<li class="com-border-primary com-text-center com-pointer com-overflow-hidden com-bg com-shadow-back com-relative com-flex-row com-flex-justify-center com-flex-align-center com-round-30" data-region="${region.data}" data-lat="${region.lat}" data-lng="${region.lng}">
+                                                <img src="/tastezip/resources/img/ico/region/${region.img}.png" class="com-img-fit">
                                                 <span class="region-title com-color-white com-bg-primary-tr com-font-size-3 com-width-100">${region.name}</span>
                                             </li>`
-                                    )
-                                    .join("")}
+                        )
+                        .join("")}
                             </ul>
                         `;
-                    }).join("")}
+            }).join("")}
                 </div>
             `;
             regionListWrapper.innerHTML = regionListHTML;
             $("#prev-arrow, #next-arrow").removeClass("hidden");
         }
     }
-    
+
     // 페이지 이동함수
     function goToPage(page) {
         if (page < 1 || page > totalPages) return;
         currentRegionPage = page;
-    
+
         const slider = document.querySelector('.region-slider');
         if (slider) {
             slider.style.transition = 'transform 0.5s ease';
@@ -93,15 +97,15 @@ $(document).ready(function() {
         }
 
     }
-    
+
     // 초기화 메소드
     function init() {
         renderRegions(currentRegionPage);
-    
+
         const restaurantList = $(".map-small-restaruant-list");
         restaurantList.empty();
         restaurantList.append('<li class="placeholder-message com-bg com-border-primary com-round-10 com-text-center com-font-size-3 com-padding-4">지역을 선택해주세요</li>');
-    
+
         updateArrowVisibility();
 
         $("#prev-arrow").on("click", function () {
@@ -110,43 +114,38 @@ $(document).ready(function() {
             }
             updateArrowVisibility();
         });
-    
+
         $("#next-arrow").on("click", function () {
             if (currentRegionPage < totalPages) {
                 goToPage(currentRegionPage + 1);
             }
             updateArrowVisibility();
         });
-    
-        $(document).on("click", ".region-list li", function () {
-            const lat = $(this).data("lat");
-            const lng = $(this).data("lng");
-            const regionName = $(this).data("region");
-    
-            map.setCenter(new kakao.maps.LatLng(lat, lng));
-            loadRestaurant(regionName, map);
-        });
 
         $(document).on("click", ".region-list li", function () {
             const lat = $(this).data("lat");
             const lng = $(this).data("lng");
-            const regionName = $(this).data('region');
-            
+            const regionName = $(this).data("region");
+
             map.setCenter(new kakao.maps.LatLng(lat, lng));
-            
             loadRestaurant(regionName, map);
         });
-    
-        $(".region-list-wrapper").on("mousedown touchstart", function (e) {
-            startX = e.pageX || e.originalEvent.touches[0].pageX;
-            isDragging = true;
-        });
-    
-        $(document).on("mousemove touchmove", function (e) {
+
+        const wrapper = document.querySelector(".region-list-wrapper");
+        if (wrapper) {
+            const handleStart = function (e) {
+                startX = e.pageX || (e.touches && e.touches[0].pageX);
+                isDragging = true;
+            };
+            wrapper.addEventListener("mousedown", handleStart, { passive: true });
+            wrapper.addEventListener("touchstart", handleStart, { passive: true });
+        }
+
+        const handleMove = function (e) {
             if (isDragging) {
-                const moveX = e.pageX || e.originalEvent.touches[0].pageX;
+                const moveX = e.pageX || (e.touches && e.touches[0].pageX);
                 const diffX = startX - moveX;
-            
+
                 if (Math.abs(diffX) > 50) {
                     isDragging = false;
                     if (diffX > 0 && currentRegionPage < Math.ceil(regions.length / regionsPerPage)) {
@@ -158,24 +157,22 @@ $(document).ready(function() {
                     }
                 }
             }
-        });
-    
-        $(document).on("mouseup touchend", function () {
+        };
+        document.addEventListener("mousemove", handleMove, { passive: true });
+        document.addEventListener("touchmove", handleMove, { passive: true });
+
+        const handleEnd = function () {
             isDragging = false;
-        });
-    
-        $(document).on("click", ".region-list li", function () {
-            const lat = $(this).data("lat");
-            const lng = $(this).data("lng");
-            map.setCenter(new kakao.maps.LatLng(lat, lng));
-        });
+        };
+        document.addEventListener("mouseup", handleEnd, { passive: true });
+        document.addEventListener("touchend", handleEnd, { passive: true });
 
         $(window).resize(() => {
             renderRegions();
         });
 
     }
-    
+
     function updateArrowVisibility() {
         if (currentRegionPage <= 1) {
             $("#prev-arrow").addClass("com-hide");
@@ -209,14 +206,14 @@ $(document).ready(function() {
             success: function (response) {
                 const restaurantList = $(".map-small-restaruant-list");
                 restaurantList.empty();
-            
+
                 if (response.length === 0) {
                     restaurantList.html(
                         '<li class="placeholder-message com-bg com-border-primary com-round-10 com-text-center com-font-size-3 com-padding-4">등록된 식당이 없습니다.</li>'
                     );
                     return;
                 }
-            
+
                 response.forEach((place) => {
                     const listItem = `
                         <li class="com-padding-2 com-border-primary com-round-10 com-bg com-shadow-back">
@@ -238,7 +235,7 @@ $(document).ready(function() {
                             </a>
                         </li>`;
                     restaurantList.append(listItem);
-                
+
                     let markerPosition = new kakao.maps.LatLng(place.mapy, place.mapx);
                     let marker = new kakao.maps.Marker({
                         position: markerPosition,
@@ -251,19 +248,19 @@ $(document).ready(function() {
                             <span style="color: gray;">${place.cat3 || '카테고리'}</span>
                         </div>
                     `;
-    
+
                     let customOverlay = new kakao.maps.CustomOverlay({
                         position: markerPosition,
                         content: overlayContent,
                         yAnchor: 1.8
                     });
-    
+
                     customOverlay.setMap(map);
 
                     markers.push(marker);
                     overlays.push(customOverlay);
 
-                    kakao.maps.event.addListener(marker, 'click', function() {
+                    kakao.maps.event.addListener(marker, 'click', function () {
                         window.location = `/map?placeId=${place.placeId}`;
                     });
 
@@ -277,6 +274,4 @@ $(document).ready(function() {
             }
         });
     }
-
-    init();
-})
+});

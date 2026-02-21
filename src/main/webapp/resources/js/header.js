@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // ------------------------------------
     //              헤더 좌측
     // ------------------------------------
@@ -19,7 +19,7 @@ $(document).ready(function() {
                 title: place.title || '이름 없음',
                 id: place.placeId
             }));
-            
+
         } catch (error) {
             console.error('Top ranked places를 가져오는 중 오류 발생:', error);
         }
@@ -58,7 +58,7 @@ $(document).ready(function() {
         }
 
         // 순위 표시하는 부분에 마우스 올릴 시 전체 목록 보여주기
-        $('.popular-restaurant-list').on('mouseenter', function() {
+        $('.popular-restaurant-list').on('mouseenter', function () {
             if (isMobile()) return;
             const $popup = $('.popular-restaurant-popup');
             const $list = $('#restaurant-full-list');
@@ -74,13 +74,13 @@ $(document).ready(function() {
             });
             $popup.addClass('open');
 
-            $('.popular-restaurant-list').on('mouseleave', function() { $popup.removeClass('open'); });
-            $('.popular-restaurant-popup').on('mouseenter', function() { $(this).addClass('open'); }).on('mouseleave', function() { $(this).removeClass('open'); });
+            $('.popular-restaurant-list').on('mouseleave', function () { $popup.removeClass('open'); });
+            $('.popular-restaurant-popup').on('mouseenter', function () { $(this).addClass('open'); }).on('mouseleave', function () { $(this).removeClass('open'); });
         });
     }
-    
+
     initRestaurantRotation();
-    
+
 
     // ------------------------------------
     //              헤더 우측
@@ -98,7 +98,7 @@ $(document).ready(function() {
     }
 
     // 모드 변경 버튼 클릭시 함수 호출
-    $('#change-mode').on('click', function() {
+    $('#change-mode').on('click', function () {
         changeMode();
     });
 
@@ -119,7 +119,16 @@ $(document).ready(function() {
             $('#login-register').removeClass('hidden').css('opacity', '1');
         }
     });
-    
+
+    // 로그인 안 된 상태: 테스트 가챠 출력
+    $('#open-test-gacha').on('click', function () {
+        $('#gacha-modal-overlay').removeClass('hidden');
+    });
+
+    $('.gacha-modal-close-btn').on('click', function () {
+        $('#gacha-modal-overlay').addClass('hidden');
+    });
+
     // 경로에 따라 이동 아이콘 변경
     if (currentPath === '/map') {
         const $mapIcon = $('#goto-map i');
@@ -128,7 +137,7 @@ $(document).ready(function() {
         $('.mob-popular-restaurant-btn').addClass('hidden');
         $('#goto-map').attr('href', '/');
     }
-    
+
 
     // ------------------------------------
     //              로그인 창
@@ -143,11 +152,11 @@ $(document).ready(function() {
 
         // 화면전환 효과용 div 추가 후 150ms 간격으로 확장
         $('.circle-transition').remove();
-        for (let index = 0; index < 5 ; index++) {
+        for (let index = 0; index < 5; index++) {
             $('.login-register-wrapper').append(`<div class="circle-transition circle-${index}"></div>`);
-            
-            setTimeout(() => { 
-                $(`.circle-${index}`).addClass('circle-active'); 
+
+            setTimeout(() => {
+                $(`.circle-${index}`).addClass('circle-active');
             }, 150 * (index + 1));
         }
 
@@ -156,7 +165,7 @@ $(document).ready(function() {
             $('#error-message, #email-error, #confirm-code, #password-error, #confirmPassword-error').text('');
             $('.login-register-screen').removeClass('screen-expand');
         }, 400)
-    
+
         // 화면 교체
         setTimeout(() => {
             if (isLoginVisible) {
@@ -169,24 +178,24 @@ $(document).ready(function() {
             }
             isLoginVisible = !isLoginVisible;
         }, 600);
-    
+
         // 원 뒤로 보내고 화면 확장
-        setTimeout(() => { 
-            $('.circle-transition').css('z-index', '-1'); 
-            $('.login-register-screen').addClass('screen-expand'); 
+        setTimeout(() => {
+            $('.circle-transition').css('z-index', '-1');
+            $('.login-register-screen').addClass('screen-expand');
         }, 800);
-        
+
         // 원 삭제
-        setTimeout(() => { 
-            $('.circle-transition').remove(); 
-            isAnimating = false; 
+        setTimeout(() => {
+            $('.circle-transition').remove();
+            isAnimating = false;
         }, 1300);
     }
 
     // 로그인 하기 / 회원가입 하기 클릭시 화면전환
     $(document).on('click', '.button-login', function (e) { e.preventDefault(); if (!isLoginVisible) transition(); });
     $(document).on('click', '.button-register', function (e) { if (isLoginVisible) transition(); });
-    
+
     // ESC키 혹은 닫기 버튼을 클릭하면 모달 창 닫기
     $(document).on('keydown', function (e) {
         if (e.key === "Escape") close();
@@ -204,7 +213,7 @@ $(document).ready(function() {
             $('#login-register').css('opacity', '0').addClass('hidden');
         }
         $('#modal-overlay').fadeOut();
-        
+
         // 팝업이 열려 있다면 팝업 닫기
         if ($('#slide-popup').length) {
             Popup.close();
@@ -225,7 +234,7 @@ $(document).ready(function() {
     // ------------------------------------
 
     // 로그인 핸들러
-    $('#btn-login').on('click', function(e) {
+    $('#btn-login').on('click', function (e) {
         e.preventDefault();
         const email = $('input[name="memberId"]').val();
         const password = $('input[name="memberPw"]').val();
@@ -246,7 +255,7 @@ $(document).ready(function() {
                             window.location.href = response.redirectUrl;
                         });
                         Popup.open('다시 방문하신걸 환영합니다! 🎉<br>즐거운 맛집 탐색을 시작해볼까요?');
-    
+
                     } else {
                         $('#error-message').text(response.msg);
                     }
@@ -281,10 +290,10 @@ $(document).ready(function() {
     }
 
     // 체크박스 상태 변경 이벤트 핸들러
-    $('#remember_login').on('change', function() { saveId(); });
+    $('#remember_login').on('change', function () { saveId(); });
 
     // 로그인할때도 아이디 저장하기
-    $('#btn-login').on('click', function(e) { e.preventDefault(); saveId(); });
+    $('#btn-login').on('click', function (e) { e.preventDefault(); saveId(); });
 
 
     // ------------------------------------
@@ -307,7 +316,7 @@ $(document).ready(function() {
     // -------------- 스텝 1
 
     // 약관 동의 화면
-    $('#register_agreement, #register_agreement_label').on('click', function(e) {
+    $('#register_agreement, #register_agreement_label').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -325,7 +334,7 @@ $(document).ready(function() {
     $('.view-full-terms').click(function () {
         const termsType = $(this).data('terms');
         let termsContent = '';
-    
+
         // 약관 내용 설정
         switch (termsType) {
             case 'service':
@@ -340,7 +349,7 @@ $(document).ready(function() {
             default:
                 termsContent = "약관 내용을 불러올 수 없습니다.";
         }
-    
+
         // 팝업 모듈을 통해 약관 내용 표시
         Popup.open(`
             <h2>전체 약관</h2>
@@ -361,14 +370,14 @@ $(document).ready(function() {
     }
 
     // 전체 약관 동의 체크박스 변경 시 개별 체크박스 변경
-    $('#all-agree').on('change', function() {
+    $('#all-agree').on('change', function () {
         const isChecked = $(this).prop('checked');
         $('.terms-checkbox').prop('checked', isChecked);
         checkRequired();
     });
 
     // 개별 약관 동의 체크박스 변경 시 전체 체크박스 변경
-    $('.terms-checkbox').on('change', function() {
+    $('.terms-checkbox').on('change', function () {
         if ($('#agree-service').prop('checked') && $('#agree-privacy').prop('checked') && $('#agree-location').prop('checked')) {
             $('#all-agree').prop('checked', true);
         } else {
@@ -378,14 +387,14 @@ $(document).ready(function() {
     });
 
     // 동의 버튼 클릭시 체크 처리
-    $('#agree-button').on('click', function() {
+    $('#agree-button').on('click', function () {
         $('#register_agreement').prop('checked', true);
         $('#terms-modal').removeClass('visible');
         $('#btn-next-step-1').prop('disabled', false);
     });
 
     // 스텝 이동
-    $('#btn-next-step-1').on('click', function(e) {
+    $('#btn-next-step-1').on('click', function (e) {
         e.preventDefault();
         navigateToStep(2);
     });
@@ -399,7 +408,7 @@ $(document).ready(function() {
         $('#btn-next-step-2').prop('disabled', true); // 다음 버튼 비활성화
     }
     regStep2();
-    
+
     // 이메일 입력란만 실시간 유횩성 검사
     $('#reg_member_id').on('input', function () {
         const email = $(this).val();
@@ -408,21 +417,21 @@ $(document).ready(function() {
     });
 
     // 이메일 중복확인
-    $('#checkId').on('click', function(e) {
+    $('#checkId').on('click', function (e) {
         e.preventDefault();
         const email = $('#reg_member_id').val();
         const emailError = validateField('email', email);
-    
+
         if (emailError) {
             $('#resultMsg').text(emailError).css('color', 'var(--zip-error)');
             return;
         }
-    
+
         $.ajax({
             url: contextPath + '/member/checkId.do',
             type: 'POST',
             data: { member_id: email },
-            success: function(response) {
+            success: function (response) {
                 if (response === "FAIL") {
                     $('#resultMsg').text('이미 사용 중인 이메일입니다.').css('color', 'var(--zip-error)');
                 } else if (response === "PASS") {
@@ -433,7 +442,7 @@ $(document).ready(function() {
                     $('#resultMsg').text('서버 응답이 올바르지 않습니다.').css('color', 'var(--zip-error)');
                 }
             },
-            error: function() {
+            error: function () {
                 $('#resultMsg').text('서버와 통신에 실패했습니다.').css('color', 'var(--zip-error)');
             }
         });
@@ -462,7 +471,7 @@ $(document).ready(function() {
     }
 
     // 이메일 인증 메소드
-    $('#confirm_email_btn').on('click', function(e) {
+    $('#confirm_email_btn').on('click', function (e) {
         e.preventDefault();
         const authCode = $('#auth_num_input').val();
 
@@ -544,7 +553,7 @@ $(document).ready(function() {
     });
 
     // 다음 스텝으로 이동
-    $('#btn-next-step-2').on('click', function(e) {
+    $('#btn-next-step-2').on('click', function (e) {
         e.preventDefault();
         navigateToStep(3);
     });
@@ -585,15 +594,15 @@ $(document).ready(function() {
         const name = $('#memberName').val();
         const nameRegex = /^[가-힣a-zA-Z]{2,}$/;
         let errorMessage = '';
-    
+
         if (!name) {
             errorMessage = '이름을 입력해주세요.';
         } else if (!nameRegex.test(name)) {
             errorMessage = '이름은 한글 또는 영문으로 2자 이상 입력해주세요.';
         }
-    
+
         $('#name-error').text(errorMessage).css('color', errorMessage ? 'var(--zip-error)' : 'var(--zip-success)');
-    
+
         return !errorMessage;
     }
 
@@ -602,12 +611,12 @@ $(document).ready(function() {
         const isPhoneValid = validatePhone();
         const isBirthdayValid = validateBirthday();
         const isNameValid = validateName();
-    
+
         // 모든 조건이 만족되면 버튼 활성화
         const isAllValid = isPhoneValid && isBirthdayValid && isNameValid;
         $('#btn-register').prop('disabled', !isAllValid);
     }
-    
+
     $('input[name="memberName"], input[name="member_phone_middle"], input[name="member_phone_back"], input[name="birthday"]').on('input', function () {
         $('#member_phone_front').val('010');
         validateStep3();
@@ -616,7 +625,7 @@ $(document).ready(function() {
     // 최종 회원가입 데이터 제출
     $('#btn-register').on('click', function (e) {
         e.preventDefault();
-    
+
         const memberData = {
             memberId: $('#reg_member_id').val(),
             memberPw: $('#reg_member_pw').val(),
@@ -656,24 +665,23 @@ $(document).ready(function() {
     function resetRegister() {
         $('input[type="text"], input[type="password"], input[type="email"]').val('');
         $('input[type="checkbox"]').prop('checked', false);
-    
+
         $('#error-message, #email-error, #resultMsg, #resultEmail, #password-error, #confirmPassword-error, #phone-num-error, #birthday-error, #name-error').text('');
-        
+
         $('#auth_num_section').hide();
         $('#auth_num_input').prop('disabled', true);
         $('#confirm_email_btn').prop('disabled', true);
-    
+
         $('.register-step').addClass('hidden');
         $('#register-page-1').removeClass('hidden');
-    
+
         $('.step-indicator div').removeClass('active');
         $('.step-indicator .step-1').addClass('active');
-    
+
         $('#btn-next-step-1, #btn-next-step-2, #btn-register').prop('disabled', true);
-    
+
         currentStep = 1;
     }
-
 
     // ------------------------------------
     //       유틸리티 함수들: util.js
@@ -698,11 +706,11 @@ $(document).ready(function() {
                 if (!value) return '전화번호를 입력해주세요.';
                 if (!/^\d{3}-\d{3,4}-\d{4}$/.test(value)) return '전화번호 형식이 올바르지 않습니다.';
                 break;
-            case 'birthday': 
+            case 'birthday':
                 if (!value) return '생년월일 8자리를 입력해주세요.';
                 if (!/^\d{8}$/.test(value)) return '생년월일 8자리를 입력해주세요.';
                 break;
-            case 'name': 
+            case 'name':
                 if (!value) return '이름을 입력해주세요.';
                 break;
             default:
@@ -710,5 +718,5 @@ $(document).ready(function() {
         }
         return '';
     }
-    
+
 });

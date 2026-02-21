@@ -2,18 +2,20 @@
            스타일시트 시작: style.css 
 -----------------------------------------------*/
 
-html, body {
+html,
+body {
     background-color: var(--zip-bg);
     color: var(--zip-text);
 }
 
-* ::-webkit-scrollbar-thumb { 
-    background-color: var(--zip-primary); 
-    border-radius: 8px; border: 3px solid var(--zip-bg); 
+* ::-webkit-scrollbar-thumb {
+    background-color: var(--zip-primary);
+    border-radius: 8px;
+    border: 3px solid var(--zip-bg);
 }
 
-* ::-webkit-scrollbar-thumb:hover { 
-    background-color: var(--zip-primary-hover); 
+* ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--zip-primary-hover);
 }
 
 
@@ -56,8 +58,13 @@ header::after {
 }
 
 /* 목록 슬라이드 애니메이션 적용 */
-#restaurant-rotation.slide-out { animation: slideOut 0.5s ease forwards; }
-#restaurant-rotation.slide-in { animation: slideIn 0.5s ease forwards; }
+#restaurant-rotation.slide-out {
+    animation: slideOut 0.5s ease forwards;
+}
+
+#restaurant-rotation.slide-in {
+    animation: slideIn 0.5s ease forwards;
+}
 
 /* PC, 인기식당 전체 리스트 팝업 */
 .popular-restaurant-popup {
@@ -188,15 +195,15 @@ header::after {
 }
 
 /* 모드 전환 아이콘 애니메이션 */
-html.dark-mode .mode-icon::before { 
-    transform: rotateZ(180deg); 
+html.dark-mode .mode-icon::before {
+    transform: rotateZ(180deg);
     opacity: 0;
- }
+}
 
-html.dark-mode .mode-icon::after { 
-    transform: rotateZ(0deg); 
+html.dark-mode .mode-icon::after {
+    transform: rotateZ(0deg);
     opacity: 1;
- }
+}
 
 
 /* ---------------------------------------------
@@ -267,8 +274,14 @@ html.dark-mode .mode-icon::after {
 
 /* 트랜지션을 위한 스크린 요소 */
 /* path 가 확장되면서 컨텐츠들이 보이게 됨 */
-.login-register-screen { transition: clip-path 0.6s ease; clip-path: circle(0% at 50% 100%); }
-.screen-expand { clip-path: circle(150% at 50% 100%); }
+.login-register-screen {
+    transition: clip-path 0.6s ease;
+    clip-path: circle(0% at 50% 100%);
+}
+
+.screen-expand {
+    clip-path: circle(150% at 50% 100%);
+}
 
 /* 화면 전환 연출용 요소 */
 .circle-transition {
@@ -289,13 +302,13 @@ html.dark-mode .mode-icon::after {
 }
 
 /* 로그인, 회원가입 요소들을 담는 컨테이너 */
-.login-container, 
+.login-container,
 .register-container {
     min-height: 550px;
 }
 
 /* hidden 상태일때 숨김 */
-.login-container.hidden, 
+.login-container.hidden,
 .register-container.hidden {
     max-height: 0;
 }
@@ -347,8 +360,13 @@ html.dark-mode .mode-icon::after {
 }
 
 /* sns 로그인 구분선 양쪽 여백 */
-.sns-login-title::before { margin-right: 10px; }
-.sns-login-title::after { margin-left: 10px; }
+.sns-login-title::before {
+    margin-right: 10px;
+}
+
+.sns-login-title::after {
+    margin-left: 10px;
+}
 
 /* sns 간편 로그인 버튼 스타일 */
 .sns-login-btn-bundle a {
@@ -362,9 +380,19 @@ html.dark-mode .mode-icon::after {
 }
 
 /* 아이디 기억하기 체크박스 */
-#remember_login { width: 18px; height: 18px; }
-#remember_login:checked::before { width: 10px; height: 10px; }
-label[for="remember_login"] { cursor: pointer; }
+#remember_login {
+    width: 18px;
+    height: 18px;
+}
+
+#remember_login:checked::before {
+    width: 10px;
+    height: 10px;
+}
+
+label[for="remember_login"] {
+    cursor: pointer;
+}
 
 
 /* ---------------------------------------------
@@ -384,9 +412,19 @@ label[for="remember_login"] { cursor: pointer; }
 }
 
 /* 약관 동의 체크박스 */
-#register_agreement { width: 22px; height: 22px; }
-#register_agreement:checked::before { width: 14px; height: 14px; }
-label[for="register_agreement"] { cursor: pointer;}
+#register_agreement {
+    width: 22px;
+    height: 22px;
+}
+
+#register_agreement:checked::before {
+    width: 14px;
+    height: 14px;
+}
+
+label[for="register_agreement"] {
+    cursor: pointer;
+}
 
 /* 중복확인 버튼 */
 .get-confirm {
@@ -426,10 +464,25 @@ label[for="register_agreement"] { cursor: pointer;}
 }
 
 /* 약관 동의창 작은 체크박스 */
-.terms-checkbox { width: 17px; height: 17px; margin-right: 10px; }
-.terms-checkbox:checked::before { width: 9px; height: 9px; }
-.terms-checkbox-label { cursor: pointer; width: 100%; }
-.terms-checkbox-label a { float: right; }
+.terms-checkbox {
+    width: 17px;
+    height: 17px;
+    margin-right: 10px;
+}
+
+.terms-checkbox:checked::before {
+    width: 9px;
+    height: 9px;
+}
+
+.terms-checkbox-label {
+    cursor: pointer;
+    width: 100%;
+}
+
+.terms-checkbox-label a {
+    float: right;
+}
 
 /* 약관 제목 */
 .term-title {
@@ -523,7 +576,7 @@ label[for="register_agreement"] { cursor: pointer;}
 }
 
 /* 배너 슬라이드 영역 */
-.banner-slides { 
+.banner-slides {
     height: 100%;
 }
 
@@ -662,8 +715,8 @@ section {
 }
 
 /* 지도 다크모드 색상 변환시 트랜지션 */
-.map-small { 
-    transition: filter 0.3s ease; 
+.map-small {
+    transition: filter 0.3s ease;
 }
 
 .region-list {
@@ -684,6 +737,10 @@ section {
     left: 50%;
     padding: 4px 10px;
     transform: translateX(-50%);
+}
+
+.region-list li img {
+    padding: 5px;
 }
 
 .pagination-dots {
@@ -925,12 +982,13 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     padding: 10px;
     text-align: center;
     color: white;
     transition: all 0.3s ease;
 }
+
 .image-upload-overlay i {
     font-size: 24px;
 }
@@ -941,7 +999,7 @@ section {
 
 .form-group label {
     display: block;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
@@ -1062,7 +1120,7 @@ section {
     max-height: 80vh;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     z-index: 1000;
 }
@@ -1117,9 +1175,9 @@ section {
     height: calc(-80px + 100vh);
 }
 
-#map { 
-    background: #f5f5f5; 
-    transition: filter 0.3s ease; 
+#map {
+    background: #f5f5f5;
+    transition: filter 0.3s ease;
 }
 
 .map-controls {
@@ -1139,7 +1197,7 @@ section {
     background: var(--zip-primary);
     color: var(--zip-text-white);
     border: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1300,12 +1358,12 @@ section {
     width: 500px;
     border-radius: 0 10px 10px 0;
     z-index: 9;
-    margin-left: -503px; 
-    transition: margin-left 0.3s ease; 
-}   
+    margin-left: -503px;
+    transition: margin-left 0.3s ease;
+}
 
 .restaurant-detail-container.show {
-    margin-left: 0; 
+    margin-left: 0;
 }
 
 .close-button {
@@ -1456,18 +1514,41 @@ section {
     min-height: 800px;
 }
 
-.board-list ul li:first-of-type { margin-top: 10px; }
-.board-list ul li:last-of-type { margin-bottom: 0; border-bottom: none !important; }
+.board-list ul li:first-of-type {
+    margin-top: 10px;
+}
 
-.pagination .current-page { color: var(--zip-blue); }
-html.dark-mode .pagination .current-page { color: var(--zip-primary); }
+.board-list ul li:last-of-type {
+    margin-bottom: 0;
+    border-bottom: none !important;
+}
 
-.board-button-bundle { padding-top: 20px; }
+.pagination .current-page {
+    color: var(--zip-blue);
+}
 
-.tabs ul li:hover a { border-bottom: 3px solid var(--zip-primary); }
-.tabs ul li.active a { width: 100%; border-bottom: 3px solid transparent; border-top: 3px solid var(--zip-primary); font-weight: bold; }
+html.dark-mode .pagination .current-page {
+    color: var(--zip-primary);
+}
 
-.pagination .page-link { text-decoration: none }
+.board-button-bundle {
+    padding-top: 20px;
+}
+
+.tabs ul li:hover a {
+    border-bottom: 3px solid var(--zip-primary);
+}
+
+.tabs ul li.active a {
+    width: 100%;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid var(--zip-primary);
+    font-weight: bold;
+}
+
+.pagination .page-link {
+    text-decoration: none
+}
 
 /* 글 쓰기 */
 .write h3 {
@@ -1495,13 +1576,14 @@ html.dark-mode .pagination .current-page { color: var(--zip-primary); }
     box-shadow: none !important;
 }
 
-.ck.ck-reset_all, .ck.ck-reset_all * {
+.ck.ck-reset_all,
+.ck.ck-reset_all * {
     color: var(--zip-text-white) !important;
 }
 
 .ck.ck-toolbar {
     background: none !important;
-    border: none!important;
+    border: none !important;
 }
 
 .ck.ck-editor__main>.ck-editor__editable {
@@ -1682,4 +1764,271 @@ html.dark-mode .pagination .current-page { color: var(--zip-primary); }
     border: none;
     font-size: 1.5em;
     cursor: pointer;
+}
+
+/* ---------------------------------------------
+            캐릭터 뽑기 gacha.css
+-----------------------------------------------*/
+.gacha-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1200;
+}
+
+.gacha-modal-container {
+    width: 400px;
+    height: 600px;
+}
+
+.gacha-modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 10;
+    font-size: 24px;
+}
+
+#gacha-container {
+    width: 100%;
+    height: 100%;
+}
+
+.gacha-machine {
+    width: 220px;
+    height: 420px;
+    background: var(--zip-primary);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.1s ease-in-out;
+}
+
+.gacha-machine.click-bounce {
+    transform: scale(0.95);
+}
+
+.gacha-machine-top {
+    width: 200px;
+    height: 280px;
+    background: var(--zip-primary-hover);
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.gacha-machine-glass {
+    width: 85%;
+    height: 85%;
+    background: rgba(173, 216, 230, 0.5);
+    border-radius: 10px;
+    border: 5px solid var(--zip-border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.gacha-glass-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: var(--zip-primary-dark);
+    opacity: 0.8;
+    z-index: 2;
+}
+
+.gacha-capsules {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.gacha-capsule {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, var(--color-top, #FFD700) 50%, white 50%);
+    position: absolute;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gacha-capsule.jiggle {
+    animation: jiggle 0.2s ease-in-out 3;
+}
+
+@keyframes jiggle {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--rot));
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(var(--rot));
+    }
+}
+
+.gacha-machine-body {
+    width: 200px;
+    height: 200px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+.gacha-coin-slot {
+    width: 50px;
+    height: 10px;
+    background: var(--zip-black-secondary);
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.gacha-control-panel {
+    margin-bottom: auto;
+}
+
+.gacha-handle {
+    width: 45px;
+    height: 45px;
+    background: var(--zip-bg);
+    border: 3px solid var(--zip-border);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.gacha-handle::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: var(--zip-border);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.gacha-digital-display {
+    width: 85px;
+    height: 55px;
+    background: #111;
+    border: 2px solid #222;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.8), 0 1px 0px rgba(255, 255, 255, 0.2);
+    color: #33ff33;
+}
+
+.display-label {
+    color: #888;
+    font-size: 0.65em;
+    letter-spacing: -0.5px;
+}
+
+.display-unit {
+    color: #888;
+}
+
+.gacha-dispense-area {
+    width: 80px;
+    height: 50px;
+    background: var(--zip-black-secondary);
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.gacha-capsule.roll-out {
+    position: absolute;
+    z-index: 10;
+}
+
+.gacha-capsule.roll-out-animation {
+    animation: rollOut 2s ease-out forwards;
+}
+
+@keyframes rollOut {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(40px, 30px) rotate(180deg);
+    }
+
+    100% {
+        transform: translate(100px, 60px) rotate(360deg);
+    }
+}
+
+.gacha-image-wrapper {
+    width: 200px;
+    height: 200px;
+}
+
+.gacha-collection-content {
+    width: 450px;
+    max-height: 500px;
+}
+
+.collection-grid-container {
+    max-height: 300px;
+}
+
+#test-collection-grid {
+    flex-wrap: wrap;
+}
+
+#test-collection-grid li {
+    width: calc((100% - 30px) / 3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+}
+
+#test-collection-grid img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--zip-primary);
+    background: var(--zip-white);
+    transition: filter 0.3s;
+    padding: 5px;
+}
+
+#test-collection-grid span {
+    font-size: 0.8em;
+    word-break: keep-all;
+}
+
+.not-owned img {
+    filter: grayscale(100%) brightness(50%);
+}
+
+.not-owned span {
+    color: var(--zip-border-dark);
 }

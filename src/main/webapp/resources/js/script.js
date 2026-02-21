@@ -5,37 +5,37 @@ $(function () {
     // --------------------------------
 
     // 모바일 감지 함수
-    window.isMobile = function() { return window.matchMedia("(max-width: 1024px)").matches; };
-    window.isPhone = function() { return window.matchMedia("(max-width: 480px)").matches; }
+    window.isMobile = function () { return window.matchMedia("(max-width: 1024px)").matches; };
+    window.isPhone = function () { return window.matchMedia("(max-width: 480px)").matches; }
 
     // --------------------------------
     // 1자형 리스트 스크롤 버튼 스크립트
     // --------------------------------
-    $('.scroll-left').click(function() { doScroll($(this), 'left'); });
-    $('.scroll-right').click(function() { doScroll($(this), 'right'); });
-    
+    $('.scroll-left').click(function () { doScroll($(this), 'left'); });
+    $('.scroll-right').click(function () { doScroll($(this), 'right'); });
+
     function doScroll($button, direction) {
         const $wrapper = $button.closest('.card-list-wrapper');
         const $list = $wrapper.find('.card-list');
         const itemWidth = $list.find('li').outerWidth(true);
         const scrollAmount = direction === 'left' ? '-=' + (itemWidth * 3) : '+=' + (itemWidth * 3);
-    
-        $list.animate({ scrollLeft: scrollAmount }, 100, function() {
+
+        $list.animate({ scrollLeft: scrollAmount }, 100, function () {
             updateButton($wrapper, $list);
         });
     }
-    
+
     function updateButton($wrapper, $list) {
         const $scrollLeftBtn = $wrapper.find('.scroll-left');
         const $scrollRightBtn = $wrapper.find('.scroll-right');
         const scrollLeft = $list.scrollLeft();
         const maxScrollLeft = $list[0].scrollWidth - $list.outerWidth();
-    
+
         $scrollLeftBtn.prop('disabled', scrollLeft <= 0);
         $scrollRightBtn.prop('disabled', scrollLeft >= maxScrollLeft);
     }
-    
-    $('.card-list').on('scroll', function() {
+
+    $('.card-list').on('scroll', function () {
         const $list = $(this);
         const $wrapper = $list.closest('.card-list-wrapper');
         updateButton($wrapper, $list);
@@ -47,18 +47,20 @@ $(function () {
     // ---------------------------------------------------------
     $('.horizontal-scroll').each(function () {
         const scrollContainer = $(this);
-        scrollContainer.on('wheel', function (event) {
+        const el = scrollContainer[0];
+
+        el.addEventListener('wheel', function (event) {
             if (isMobile()) {
                 event.preventDefault();
-              
-                const delta = event.originalEvent.deltaY;
+
+                const delta = event.deltaY;
                 const scrollAmount = 5;
-              
+
                 $(this).stop().animate({
-                  scrollLeft: this.scrollLeft + (delta * scrollAmount)
+                    scrollLeft: this.scrollLeft + (delta * scrollAmount)
                 }, 200);
             }
-        });
+        }, { passive: false });
     });
 
 
@@ -111,7 +113,7 @@ $(function () {
                         customCloseCallback();
                         customCloseCallback = null;
                     }
-                }, 500); 
+                }, 500);
             }
         }
 
@@ -169,7 +171,7 @@ $(function () {
         }
     }
 
-    $(window).resize(function() { if (isMobile()) $spanEl.text('맛.zip'); });
+    $(window).resize(function () { if (isMobile()) $spanEl.text('맛.zip'); });
 
     writeTxt();
 
@@ -178,7 +180,7 @@ $(function () {
     // 클릭시 위로 스크롤하는 버튼 기능
     // ----------------------------------------------------
     const $scrollButton = $('#scrollToTop');
-    
+
     $('body').on('scroll', function () {
         if ($(this).scrollTop() > 550) {
             $scrollButton.addClass('visible');

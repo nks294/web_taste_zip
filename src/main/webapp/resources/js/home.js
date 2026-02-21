@@ -10,7 +10,7 @@ $(document).ready(function () {
     // -------------------------------
     // 리뷰 데이터 가져오는 함수
     // -------------------------------
-    
+
     async function fetchReview(targetId, count = 20) {
         try {
             const response = await $.ajax({
@@ -18,7 +18,7 @@ $(document).ready(function () {
                 method: 'GET',
                 data: { page: 0, size: count }
             });
-    
+
             const items = await Promise.all(response.content.map(async (review) => {
                 const likeCount = await fetchLikes(review.reviewId);
                 return {
@@ -34,7 +34,7 @@ $(document).ready(function () {
                     title: review.placeTitle
                 };
             }));
-    
+
             generateReviewList(targetId, items);
         } catch (error) {
             console.error("데이터를 불러오는 중 오류 발생:", error);
@@ -48,10 +48,10 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json'
         }).then((likeCount) => likeCount)
-        .catch((error) => {
-            console.error(`좋아요 수를 불러오는 중 오류 발생 (reviewId: ${reviewId}):`, error);
-            return 0;
-        });
+            .catch((error) => {
+                console.error(`좋아요 수를 불러오는 중 오류 발생 (reviewId: ${reviewId}):`, error);
+                return 0;
+            });
     }
 
     function generateReviewList(targetId, items) {
@@ -91,10 +91,10 @@ $(document).ready(function () {
     // 식당 데이터 가져오는 함수
     // -------------------------------
 
-    function fetchList(targetId, categoryName, theme="none", startIndex = 0, count = 10) {
+    function fetchList(targetId, categoryName, theme = "none", startIndex = 0, count = 10) {
         const page = Math.floor(startIndex / count);
         const size = count;
-    
+
         $.ajax({
             url: contextPath + '/places/searchOrCategory',
             method: 'GET',
@@ -195,7 +195,7 @@ $(document).ready(function () {
     category.forEach(item => {
         let tabItem = `<div class="cate-tab-item com-width-100 com-padding-4 com-flex-row com-flex-justify-center com-flex-align-center com-pointer com-font-size-5 com-relative" data-tab="${item.data}">${item.name}</div>`;
         tabHeader.append(tabItem);
-        let contentItem = 
+        let contentItem =
             `<div class="cate-tab-content com-width-100" id="${item.data}" style="display:none;">
                 <ul class="card-list com-gap-20"></ul>
             </div>`;
@@ -214,11 +214,11 @@ $(document).ready(function () {
         const tabId = $(this).data("tab");
         const categoryName = category.find(c => c.data === tabId)?.name || "all";
         const startIndex = (currentPage - 1) * itemsPerPage();
-    
+
         $(".cate-tab-item").removeClass("active");
         $(this).addClass("active");
         fetchList(tabId, categoryName, "none", startIndex, itemsPerPage());
-    
+
         $(".cate-tab-content").hide();
         $("#" + tabId).show();
     });
@@ -232,7 +232,7 @@ $(document).ready(function () {
             fetchList(tabId, categoryName, "none", (currentPage - 1) * itemsPerPage(), itemsPerPage());
         }
     });
-    
+
     $("#category .scroll-right").click(function () {
         if (currentPage < recommandTotalPages) {
             currentPage++;
@@ -274,22 +274,26 @@ $(document).ready(function () {
 
     let startX = 0;
 
-    $('.cate-tab-content').on('touchstart', function (event) {
-        startX = event.originalEvent.touches[0].clientX;
-    });
+    const cateTabContents = document.querySelectorAll('.cate-tab-content');
 
-    $('.cate-tab-content').on('touchend', function (event) {
-        const threshold = 50;
-        const touchEndX = event.originalEvent.changedTouches[0].clientX;
-        const diffX = touchEndX - startX;
+    cateTabContents.forEach(function (content) {
+        content.addEventListener('touchstart', function (event) {
+            startX = event.touches[0].clientX;
+        }, { passive: true });
 
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                changePage("prev");
-            } else {
-                changePage("next");
+        content.addEventListener('touchend', function (event) {
+            const threshold = 50;
+            const touchEndX = event.changedTouches[0].clientX;
+            const diffX = touchEndX - startX;
+
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    changePage("prev");
+                } else {
+                    changePage("next");
+                }
             }
-        }
+        });
     });
 
     // 창 크기 조정 이벤트
@@ -298,17 +302,17 @@ $(document).ready(function () {
         const categoryName = category.find(c => c.data === tabId)?.name || "all";
         const newItemsPerPage = itemsPerPage();
         const newTotalPages = Math.ceil(recommandTotalItems / newItemsPerPage);
-    
+
         if (newTotalPages !== recommandTotalPages) {
             recommandTotalPages = newTotalPages;
-    
+
             if (currentPage > recommandTotalPages) {
                 currentPage = recommandTotalPages;
             }
 
             const startIndex = (currentPage - 1) * newItemsPerPage;
             fetchList(tabId, categoryName, "none", startIndex, newItemsPerPage);
-    
+
             updatePagenation(recommandTotalPages, currentPage);
         }
     });

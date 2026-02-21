@@ -1,12 +1,13 @@
 $(document).ready(function () {
-    const container = document.getElementById('map');
-    const options = {
-        center: new kakao.maps.LatLng(37.5665, 126.9780),
-        level: 9,
-    };
-    const map = new kakao.maps.Map(container, options);
+    kakao.maps.load(function () {
+        const container = document.getElementById('map');
+        const options = {
+            center: new kakao.maps.LatLng(37.5665, 126.9780),
+            level: 9,
+        };
+        const map = new kakao.maps.Map(container, options);
+    });
 
-    // 음식점 리스트 동적 로딩
     function loadRestaurants() {
         for (let i = 0; i < 8; i++) {
             let listItem = `
@@ -31,15 +32,12 @@ $(document).ready(function () {
         }
     }
 
-    // 초기 로딩
     loadRestaurants();
 
-    // 북마크 버튼
     $(document).on('click', '.bookmark-btn', function () {
         $(this).find('i').toggleClass('far fas');
     });
 
-    // 필터 버튼 이벤트
     $('.filter-button').click(function () {
         const filterIndex = $('.filter-button').index(this);
         const options = $('.filter-options').eq(filterIndex);
@@ -51,12 +49,10 @@ $(document).ready(function () {
         }
     });
 
-    // 상세 보기 닫기
     $('.restaurant-detail-container .close-button').click(function () {
         $('.restaurant-detail-container').removeClass('show');
     });
 
-    // 모바일 토글 버튼
     $('.mobile-toggle-handle').click(function () {
         $('.restaurant-container').toggleClass('collapsed');
         $('.map-container').toggleClass('expanded');

@@ -243,11 +243,11 @@ $(function () {
     }
 
     $('#openGachaBtn').click(function() {
-        $('#gachaModal').removeClass('hidden');
+        $('#gacha-modal').removeClass('hidden');
     });
 
     // Close modal when clicking outside
-    $('#gachaModal').click(function(e) {
+    $('#gacha-modal').click(function(e) {
         if (e.target === this) {
             $(this).addClass('hidden');
         }
@@ -752,12 +752,6 @@ $(function () {
         });
     }
     
-    
-    
-    
-    
-
-
     $('#reviewDetailModal .close-button').click(function () {
         $('#reviewDetailModal').hide();
         $('#reviewDetailModal .review-detail-modal').hide();
